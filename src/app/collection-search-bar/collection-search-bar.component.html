@@ -1,0 +1,78 @@
+<mat-card class="container">
+  <mat-card-title> {{ advancedSearch ? "Ricerca avanzata" : "Cerca" }} </mat-card-title>
+  <mat-card-content>
+
+    <form #queryForm="ngForm">
+      <div class="row">
+        <button
+          mat-icon-button
+          (click)="advancedSearch = !advancedSearch"
+          class="bar-button"
+        >
+          <mat-icon>{{
+            advancedSearch ? "expand_less" : "expand_more"
+          }}</mat-icon>
+        </button>
+        <span
+        [ngClass]="spanClass"
+        class="bar-container"
+        >
+          <input
+            matInput
+            minlength="3"
+            maxlength="50"
+            placeholder="Cerca un fumetto.."
+            (focus)="changeClass()"
+            [(ngModel)]="query.collectionName"
+            #simpleQuery="ngModel"
+            name="simpleQuery"
+          />
+          <button *ngIf="query.collectionName" (click)="clearField(1)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </span>
+        <button mat-fab class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+
+      <div *ngIf="advancedSearch" class="row">
+        <span class="spacer-1"></span>
+        <span class="bar-container space">
+          <input
+            matInput
+            minlength="3"
+            maxlength="20"
+            placeholder="Autore"
+            [(ngModel)]="query.authorName"
+            #simpleQuery="ngModel"
+            name="simpleQuery"
+          />
+          <button *ngIf="query.authorName" (click)="clearField(2)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </span>
+        <span class="spacer-2"></span>
+      </div>
+
+      <div *ngIf="advancedSearch" class="row">
+        <span class="spacer-1"></span>
+        <span class="bar-container space">
+          <input
+            matInput
+            placeholder="Categoria"
+            [(ngModel)]="query.categoryName"
+            #simpleQuery="ngModel"
+            name="simpleQuery"
+          />
+          <button *ngIf="query.categoryName" (click)="clearField(3)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </span>
+        <span class="spacer-2"></span>
+      </div>
+    </form>
+
+
+  </mat-card-content>
+</mat-card>

@@ -19,11 +19,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { LoginComponent } from './login/login.component';
+import { NavigationCatalogComponent } from './navigation-catalog/navigation-catalog.component';
+import { CollectionSearchBarComponent } from './collection-search-bar/collection-search-bar.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, CollectionSearchBarComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -40,7 +43,8 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatGridListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent],
