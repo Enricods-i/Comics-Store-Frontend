@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { QueryStructure } from '../model/QueryStructure';
 
 @Component({
@@ -15,12 +16,14 @@ export class CollectionSearchBarComponent {
 
   advancedSearch: boolean = false;
 
-  spanClass: string = "not-focused";
+  focusOnFields: boolean[] = [false, false, false];
 
   @Output() queryEmitter = new EventEmitter<QueryStructure>();
 
-  changeClass() {
-    this.spanClass = "focused";
+  constructor(private _snackBar: MatSnackBar){}
+
+  setFieldFocus(index: number, value: boolean) {
+    this.focusOnFields[index] = value;
   }
 
   clearAll() {
@@ -47,7 +50,16 @@ export class CollectionSearchBarComponent {
     }
   }
 
-  executeQuery() {
+  onSubmit() {
+    if (
+      (this.query.collectionName.length > 0 && this.query.collectionName.length < 3) ||
+      (this.query.authorName.length > 0 && this.query.authorName.length < 3) ||
+      (this.query.categoryName.length > 0 && this.query.categoryName.length < 3)
+    ) {
+      this._snackBar.open("Inserire almeno 3 caratteri", undefined, {duration:5000})
+      return;
+    }
     this.queryEmitter.emit(this.query);
   }
+
 }

@@ -32,11 +32,11 @@ mat-card-title {
   justify-content: space-between;
 }
 
-.not-focused {
+.field-focus-out {
   border: 2px solid gray;
 }
 
-.focused {
+.field-focus {
   border: 2px solid rgb(255, 82, 82);
 }
 

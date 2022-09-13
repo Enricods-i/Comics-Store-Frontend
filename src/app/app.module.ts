@@ -20,6 +20,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { LoginComponent } from './login/login.component';
 import { NavigationCatalogComponent } from './navigation-catalog/navigation-catalog.component';
@@ -44,7 +45,8 @@ import { CollectionSearchBarComponent } from './collection-search-bar/collection
     MatGridListModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
