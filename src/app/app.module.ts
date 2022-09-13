@@ -21,12 +21,17 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatRippleModule} from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 import { LoginComponent } from './login/login.component';
 import { CollectionViewerComponent } from './collection-viewer/collection-viewer.component';
+import { NavigationCatalogComponent } from './navigation-catalog/navigation-catalog.component';
+import { CollectionSearchBarComponent } from './collection-search-bar/collection-search-bar.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, CollectionViewerComponent],
+  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, CollectionSearchBarComponent, CollectionViewerComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -45,7 +50,9 @@ import { CollectionViewerComponent } from './collection-viewer/collection-viewer
     MatDatepickerModule,
     MatNativeDateModule,
     MatChipsModule,
-    MatRippleModule
+    MatRippleModule,
+    MatExpansionModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
