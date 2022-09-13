@@ -1,0 +1,31 @@
+/* mat-grid-tile {
+  border: 3px solid black;
+} */
+
+.card {
+  max-width: 256px;
+  margin: 10px;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card img {
+  width: auto;
+  height: 400px;
+}
+
+.title {
+  max-width: 300px;
+  font-size: large;
+  text-align: center;
+}
+
+mat-chip {
+  border: 2px solid rgb(255, 82, 82);
+}
+
+mat-chip:hover {
+  cursor: pointer;
+}

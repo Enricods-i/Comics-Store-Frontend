@@ -22,4 +22,8 @@ export class AppComponent {
       dateOfLastModification: new Date(),
     };
   }
+
+  log(foo: any){
+    console.log(foo);
+  }
 }

@@ -19,11 +19,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatRippleModule} from '@angular/material/core';
 
 import { LoginComponent } from './login/login.component';
+import { CollectionViewerComponent } from './collection-viewer/collection-viewer.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, CollectionViewerComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -40,7 +43,9 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatGridListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatChipsModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent],

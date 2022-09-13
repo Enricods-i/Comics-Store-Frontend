@@ -9,3 +9,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: whitesmoke;
 }
+div.mat-ripple-element {
+  position: absolute !important;
+}
