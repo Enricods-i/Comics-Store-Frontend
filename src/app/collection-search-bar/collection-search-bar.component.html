@@ -1,88 +1,73 @@
-<mat-card class="container">
-  <mat-card-title>
-    {{ advancedSearch ? "Ricerca avanzata" : "Cerca" }}
-  </mat-card-title>
-  <mat-card-content>
-    <form (submit)="onSubmit()" #queryForm="ngForm">
-      <div class="row">
-        <button
-        type="button"
-          mat-icon-button
-          (click)="
-            advancedSearch = !advancedSearch; clearField(2); clearField(3);
-          "
-          class="bar-button"
-        >
-          <mat-icon>{{
-            advancedSearch ? "expand_less" : "expand_more"
-          }}</mat-icon>
-        </button>
-        <span
-          [ngClass]="focusOnFields[0] ? 'field-focus' : 'field-focus-out'"
-          class="bar-container"
-        >
-          <input
-            matInput
-            minlength="3"
-            maxlength="50"
-            [placeholder]="advancedSearch ? 'Fumetto' : 'Cerca un fumetto..'"
-            (focus)="setFieldFocus(0, true)"
-            (focusout)="setFieldFocus(0, false)"
-            [(ngModel)]="query.collectionName"
-            name="field1"
-          />
-          <button *ngIf="query.collectionName" (click)="clearField(1)">
-            <mat-icon>close</mat-icon>
-          </button>
-        </span>
-        <button type="submit" mat-fab class="search-button">
-          <mat-icon>search</mat-icon>
-        </button>
-      </div>
+<form (submit)="onSubmit()" #queryForm="ngForm">
+  <div class="row">
+    <button
+      type="button"
+      mat-icon-button
+      (click)="advancedSearch = !advancedSearch; clearField(2); clearField(3)"
+      class="bar-button"
+    >
+      <mat-icon>{{ advancedSearch ? "chevron_right" : "chevron_left" }}</mat-icon>
+    </button>
 
-      <div *ngIf="advancedSearch" class="row">
-        <span class="spacer-1"></span>
-        <span
-          [ngClass]="focusOnFields[1] ? 'field-focus' : 'field-focus-out'"
-          class="bar-container space"
-        >
-          <input
-            matInput
-            minlength="3"
-            maxlength="20"
-            placeholder="Autore"
-            (focus)="setFieldFocus(1, true)"
-            (focusout)="setFieldFocus(1, false)"
-            [(ngModel)]="query.authorName"
-            name="field2"
-          />
-          <button *ngIf="query.authorName" (click)="clearField(2)">
-            <mat-icon>close</mat-icon>
-          </button>
-        </span>
-        <span class="spacer-2"></span>
-      </div>
+    <span
+      [ngClass]="focusOnFields[0] ? 'field-focus' : 'field-focus-out'"
+      class="bar-container"
+    >
+      <input
+        matInput
+        minlength="3"
+        maxlength="50"
+        [placeholder]="advancedSearch ? 'Fumetto' : 'Cerca un fumetto..'"
+        (focus)="setFieldFocus(0, true)"
+        (focusout)="setFieldFocus(0, false)"
+        [(ngModel)]="query.collectionName"
+        name="field1"
+      />
+      <button *ngIf="query.collectionName" (click)="clearField(1)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </span>
 
-      <div *ngIf="advancedSearch" class="row">
-        <span class="spacer-1"></span>
-        <span
-          [ngClass]="focusOnFields[2] ? 'field-focus' : 'field-focus-out'"
-          class="bar-container space"
-        >
-          <input
-            matInput
-            placeholder="Categoria"
-            (focus)="setFieldFocus(2, true)"
-            (focusout)="setFieldFocus(2, false)"
-            [(ngModel)]="query.categoryName"
-            name="field3"
-          />
-          <button *ngIf="query.categoryName" (click)="clearField(3)">
-            <mat-icon>close</mat-icon>
-          </button>
-        </span>
-        <span class="spacer-2"></span>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+    <span
+      *ngIf="advancedSearch"
+      [ngClass]="focusOnFields[1] ? 'field-focus' : 'field-focus-out'"
+      class="bar-container"
+    >
+      <input
+        matInput
+        minlength="3"
+        maxlength="20"
+        placeholder="Autore"
+        (focus)="setFieldFocus(1, true)"
+        (focusout)="setFieldFocus(1, false)"
+        [(ngModel)]="query.authorName"
+        name="field2"
+      />
+      <button *ngIf="query.authorName" (click)="clearField(2)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </span>
+
+    <span
+      *ngIf="advancedSearch"
+      [ngClass]="focusOnFields[2] ? 'field-focus' : 'field-focus-out'"
+      class="bar-container"
+    >
+      <input
+        matInput
+        placeholder="Categoria"
+        (focus)="setFieldFocus(2, true)"
+        (focusout)="setFieldFocus(2, false)"
+        [(ngModel)]="query.categoryName"
+        name="field3"
+      />
+      <button *ngIf="query.categoryName" (click)="clearField(3)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </span>
+
+    <button type="submit" mat-fab class="search-button">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</form>

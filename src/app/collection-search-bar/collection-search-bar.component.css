@@ -7,21 +7,19 @@
   transform: translateX(-50%);
 }
 
-mat-card-title {
-  text-align: center;
-}
-
 .row {
-  min-width: 300px;
-  max-width: 400px;
+  /* min-width: 300px;
+  max-width: 400px; */
 
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 
 .row .bar-container {
-  width: 100%;
+  width: 300px;
   height: 35px;
+
+  margin-right: 5px;
 
   align-self: center;
 
@@ -77,17 +75,4 @@ mat-card-title {
 
 .search-button {
   color: white;
-  margin-left: 5px;
-}
-
-.spacer-1 {
-  min-width: 40px;;
-}
-
-.spacer-2 {
-  min-width: 61px;;
-}
-
-.space {
-  margin-bottom: 8px;
 }
