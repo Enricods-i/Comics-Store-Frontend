@@ -6,7 +6,29 @@
   flex: 1 1 auto;
 }
 
+.controls {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+::ng-deep .mat-badge-content {
+  background: rgb(255, 82, 82) !important;
+  color: white !important
+}
+
+.icon {
+  color: white;
+}
+
 .toolbar .login-button {
   color: white;
 }
+
+div {
+  width: 80%;
+  margin: 20px auto;
+}
+
+
 

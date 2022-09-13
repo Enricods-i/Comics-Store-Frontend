@@ -3,38 +3,44 @@
   <span class="spacer"></span>
   <app-collection-search-bar></app-collection-search-bar>
   <span class="spacer"></span>
-  <span *ngIf="user; else notLoggedIn">
+  <span *ngIf="user; else notLoggedIn" class="controls">
     <button mat-stroked-button color="accent">Liste Desideri</button>
-    <button mat-icon-button color="accent">
-      <mat-icon matBadge="15" matBadgePosition="below">
+    <button mat-mini-fab color="accent">
+      <mat-icon matBadge="15" matBadgePosition="below" matBadgeOverlap="false" class="icon">
         shopping_cart
       </mat-icon>
     </button>
-    <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
-      <mat-icon>person</mat-icon>
+
+    <button mat-mini-fab [matMenuTriggerFor]="menu">
+      <mat-icon class="icon">person</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
-        <mat-icon>settings</mat-icon>
+        <!-- <mat-icon>settings</mat-icon> -->
         <span>Profilo</span>
       </button>
       <button mat-menu-item>
-        <mat-icon>euro_symbol</mat-icon>
+        <!-- <mat-icon>euro_symbol</mat-icon> -->
         <span>Acquisti</span>
       </button>
       <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon>
+        <!-- <mat-icon>exit_to_app</mat-icon> -->
         <span>Esci</span>
       </button>
     </mat-menu>
   </span>
-  <ng-template #notLoggedIn>
-    <span>
-      <button mat-flat-button color="accent" class="login-button">
-        Accedi
-      </button>
-    </span>
-  </ng-template>
+
+
 </mat-toolbar>
+
+<ng-template #notLoggedIn>
+  <span>
+    <button mat-flat-button color="accent" class="login-button">Accedi</button>
+  </span>
+</ng-template>
+
+<div>
+  <app-collection-viewer></app-collection-viewer>
+</div>
 
 <router-outlet></router-outlet>

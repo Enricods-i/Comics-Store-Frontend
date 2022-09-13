@@ -4,6 +4,9 @@
 
 .card {
   max-width: 256px;
+  max-height: 404px;
+  width: 256px;
+  height: 404px;
   margin: 10px;
 }
 
@@ -20,6 +23,10 @@
   max-width: 300px;
   font-size: large;
   text-align: center;
+}
+
+mat-chip-list {
+  max-width: 300px;
 }
 
 mat-chip {
