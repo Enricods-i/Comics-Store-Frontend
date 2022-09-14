@@ -1,0 +1,154 @@
+.header {
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 20px;
+  /* border-radius: 15px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19); */
+}
+
+.header .title {
+  text-align: center;
+  font-family: "Acme";
+}
+
+.card {
+  width: 100%;
+  min-width: 400px;
+  max-width: 800px;
+
+  margin: 20px auto;
+
+  padding: 0px 10px;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.5fr;
+  grid-auto-rows: min-content;
+
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.img-container {
+  position: relative;
+}
+
+.img-container .cover {
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  outline: 1px solid gray;
+}
+
+.img-container .sold-out {
+  max-width: 50%;
+  max-height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.comic-details-container {
+  padding: 20px;
+  font-family: "Acme";
+}
+
+.comic-details-container h3 {
+  font-family: "Roboto";
+}
+
+.comic-details-container .cmc-number {
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.comic-details-container .collection-name {
+  font-size: smaller;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.row {
+  border-bottom: 1px solid rgba(128,128,128,0.30);
+}
+
+td {
+  height: 25px;
+  width: 200px;
+}
+
+.author-link {
+  margin-right: 6px;
+  text-decoration: none;
+  color: rgb(255, 82, 82);
+}
+
+.author-link:hover{
+  text-decoration: underline;
+}
+
+.description-button {
+  margin-top: 10px;
+}
+
+.button-space {
+  position: relative;
+}
+
+.button-container {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.button-container div {
+  margin: 20px auto;
+}
+
+.action-button {
+  color: white;
+}
+
+.quantity {
+  display: flex;
+  background-color: rgb(255, 82, 82);
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.quantity input {
+  border: none;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  background-color: transparent;
+  width: 10px;
+}
+
+.description-container {
+  backdrop-filter: blur(2px);
+  background-color: rgba(128,128,128,0.1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.description-card {
+  min-width: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}

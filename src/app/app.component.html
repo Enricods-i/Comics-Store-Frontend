@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="toolbar">
+<mat-toolbar [class.mat-elevation-z1]="true" color="primary" class="toolbar">
   <h1>{{ title }}</h1>
   <span class="spacer"></span>
   <app-collection-search-bar></app-collection-search-bar>
@@ -33,14 +33,21 @@
 
 </mat-toolbar>
 
+
 <ng-template #notLoggedIn>
   <span>
     <button mat-flat-button color="accent" class="login-button">Accedi</button>
   </span>
 </ng-template>
 
-<div>
-  <app-collection-viewer></app-collection-viewer>
+<div class="content">
+  <!-- <app-collection-viewer></app-collection-viewer> -->
+  <app-comic-viewer></app-comic-viewer>
 </div>
 
 <router-outlet></router-outlet>
+
+<div [class.mat-elevation-z2]="true" class="bottom-bar">
+  <span>Enrico De Salve</span>
+  <span>Comics Store - Progetto di Piattaforme Software per Applicazioni sul Web</span>
+</div>

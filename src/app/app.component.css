@@ -1,5 +1,5 @@
 .toolbar {
-  height: 70px;
+  height: 7%;
 }
 
 .spacer {
@@ -14,7 +14,7 @@
 
 ::ng-deep .mat-badge-content {
   background: rgb(255, 82, 82) !important;
-  color: white !important
+  color: white !important;
 }
 
 .icon {
@@ -25,9 +25,17 @@
   color: white;
 }
 
-div {
-  width: 80%;
-  margin: 20px auto;
+.content {
+  width: 100%;
+  margin: 10px auto;
+  height: 88.8%;
+  overflow: scroll;
+}
+
+.bottom-bar {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
 }
 
 

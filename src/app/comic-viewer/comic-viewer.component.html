@@ -1,0 +1,151 @@
+<div [ngSwitch]="context">
+  <div *ngSwitchCase="2" class="header">
+    <h1 class="title">{{ comics[0].collection.name }}</h1>
+    <br />
+    <h3 class="title">{{ comics[0].collection.description }}</h3>
+  </div>
+  <div *ngSwitchCase="0" class="header">
+    <h1 class="title">Carrello</h1>
+    <!-- <br />
+    <h3 class="title">{{ comics[0].collection.description }}</h3> -->
+  </div>
+  <div *ngSwitchCase="1" class="header">
+    <h1 class="title">Liste desideri</h1>
+    <!-- <br />
+    <h3 class="title">{{ comics[0].collection.description }}</h3> -->
+  </div>
+</div>
+
+<div *ngFor="let cmc of comics" class="card">
+  <div class="img-container">
+    <img
+      class="cover"
+      [src]="'http://localhost:8080/comics/cover/' + cmc.id"
+      alt="Cover"
+    />
+    <img
+      *ngIf="cmc.quantity == 0"
+      class="sold-out"
+      src="../../assets/sold_out.png"
+      alt="SOLD OUT"
+    />
+  </div>
+
+  <div class="comic-details-container">
+    <div>
+      <h3 class="cmc-number">Volume {{ cmc.number }}</h3>
+      <span class="collection-name">{{ cmc.collection.name }}</span>
+      <h3 id="price">€{{ cmc.collection.price }}</h3>
+
+      <table>
+        <tr class="row">
+          <td>Autori:</td>
+          <td>
+            <a href="#" *ngFor="let auth of cmc.authors" class="author-link">
+              {{ auth.name }}
+            </a>
+          </td>
+        </tr>
+        <tr class="row">
+          <td>Data di pubblicazzione:</td>
+          <td>{{ cmc.publicationDate | date: "dd/MM/yyyy" }}</td>
+        </tr>
+        <tr class="row">
+          <td>Pagine:</td>
+          <td>{{ cmc.pages }}</td>
+        </tr>
+        <tr class="row">
+          <td>Formato e rilegatura:</td>
+          <td>{{ cmc.collection.formatAndBinding }}</td>
+        </tr>
+        <tr class="row">
+          <td>Colore o B&N:</td>
+          <td>{{ cmc.collection.color ? "colore" : "bianco e nero" }}</td>
+        </tr>
+        <tr>
+          <td>ISBN</td>
+          <td>{{ cmc.isbn }}</td>
+        </tr>
+      </table>
+
+      <button
+        mat-button
+        color="accent"
+        (click)="descriptionOfComic = cmc"
+        class="description-button"
+      >
+        Leggi la descrizione
+      </button>
+    </div>
+  </div>
+
+  <div class="button-space">
+
+    <div class="button-container">
+
+      <div *ngIf="context==2 || context==1" class="quantity">
+        <button
+          mat-icon-button
+          (click)="comicQuantity.valueAsNumber!=1 ? comicQuantity.valueAsNumber=comicQuantity.valueAsNumber-1 : comicQuantity.valueAsNumber"
+          class="action-button"
+        >
+          <mat-icon>remove</mat-icon>
+        </button>
+        <input type="number" value="1" min="1" max="9" #comicQuantity>
+        <button
+          mat-icon-button
+          (click)="comicQuantity.valueAsNumber!=9 ? comicQuantity.valueAsNumber=comicQuantity.valueAsNumber+1 : comicQuantity.valueAsNumber"
+          class="action-button"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <div *ngIf="context==2 || context==1">
+        <button mat-mini-fab [disabled]="cmc.quantity == 0" class="action-button">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </div>
+
+      <div *ngIf="context==0">
+        <button mat-mini-fab class="action-button">
+          <mat-icon>remove_shopping_cart</mat-icon>
+        </button>
+      </div>
+
+      <div *ngIf="context==2 || context==0">
+        <button mat-mini-fab class="action-button">
+          <mat-icon>favorite_border</mat-icon>
+        </button>
+      </div>
+
+      <div *ngIf="context==1">
+        <button mat-mini-fab class="action-button">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div *ngIf="descriptionOfComic !== undefined" class="description-container">
+    <mat-card class="description-card">
+      <mat-card-title>Volume {{ descriptionOfComic.number }}</mat-card-title>
+      <mat-card-subtitle>{{
+        descriptionOfComic.collection.name
+      }}</mat-card-subtitle>
+
+      <mat-card-content>
+        <p>{{ descriptionOfComic.description }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-stroked-button color="accent" (click)="descriptionOfComic = undefined">
+          Chiudi
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>
