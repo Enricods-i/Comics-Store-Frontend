@@ -1,0 +1,51 @@
+<div class="title">
+  <h1>Carrello</h1>
+  <button mat-raised-button color="accent" class="action-button pay-button">Acquista</button>
+</div>
+
+<div class="comic-frame" *ngFor="let item of content">
+
+    <app-comic-viewer [comic]="item.comic"></app-comic-viewer>
+
+    <div class="button-space">
+      <div class="button-container">
+
+        <div class="quantity">
+          <button
+            mat-icon-button
+            (click)="increaseQuantity()"
+            class="action-button"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+          <span>{{item.quantity}}</span>
+          <button
+            mat-icon-button
+            (click)="decreaseQuantity()"
+            class="action-button"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+        <div>
+          <button mat-mini-fab class="action-button">
+            <mat-icon>remove_shopping_cart</mat-icon>
+          </button>
+        </div>
+
+        <div>
+          <button mat-mini-fab class="action-button">
+            <mat-icon>favorite_border</mat-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h1></h1>
+    <button mat-raised-button color="accent" class="action-button pay-button">Acquista</button>
+  </div>
+
