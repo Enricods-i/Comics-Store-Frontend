@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Comic } from '../model/Comic';
-import { ContextType } from './ContextType';
 
 @Component({
   selector: 'app-comic-viewer',
@@ -10,11 +9,9 @@ import { ContextType } from './ContextType';
 export class ComicViewerComponent implements OnInit {
 
   @Input()
-  context: ContextType = ContextType.VIEWING_CART;
+  comic!: Comic;
 
-  comics: Comic[] = [];
-
-  descriptionOfComic: Comic | undefined = undefined;
+  showDescription: boolean = false;
 
   constructor() {}
 
@@ -23,7 +20,7 @@ export class ComicViewerComponent implements OnInit {
   }
 
   mockData(){
-    this.comics = [
+    this.comic =
       {
         "id": 1,
         "collection": {
@@ -31,7 +28,7 @@ export class ComicViewerComponent implements OnInit {
           "id": 1,
           "price": 7.19,
           "yearOfRelease": 2019,
-          "formatAndBinding": undefined,
+          "formatAndBinding": "Brossurato",
           "color": false,
           "description": "Ecco la descrizione",
           "categories": [],
@@ -62,56 +59,7 @@ export class ComicViewerComponent implements OnInit {
         ],
         "creationDate": new Date("2022-09-08T19:41:43.354+00:00"),
         "dateOfLastModification": new Date("2022-09-08T19:41:43.354+00:00")
-      },
-      {
-        "id": 2,
-        "collection": {
-          "name": "L'attacco dei Giganti",
-          "id": 1,
-          "price": 7.19,
-          "yearOfRelease": 2019,
-          "formatAndBinding": undefined,
-          "color": false,
-          "description": "description",
-          "categories": [],
-          "creationDate": new Date("2022-09-08T19:31:18.758+00:00"),
-          "dateOfLastModification": new Date("2022-09-08T19:31:18.758+00:00")
-        },
-        "number": 2,
-        "quantity": 15,
-        "pages": 63,
-        "isbn": "549401902-0",
-        "publicationDate": new Date("2017-01-20"),
-        "description": "description",
-        "authors": [],
-        "creationDate": new Date("2022-09-08T19:41:43.361+00:00"),
-        "dateOfLastModification": new Date("2022-09-08T20:11:54.521+00:00")
-      },
-      {
-        "id": 3,
-        "collection": {
-          "name": "L'attacco dei Giganti",
-          "id": 1,
-          "price": 7.19,
-          "yearOfRelease": 2019,
-          "formatAndBinding": undefined,
-          "color": false,
-          "description": "description",
-          "categories": [],
-          "creationDate": new Date("2022-09-08T19:31:18.758+00:00"),
-          "dateOfLastModification": new Date("2022-09-08T19:31:18.758+00:00")
-        },
-        "number": 3,
-        "quantity": 4,
-        "pages": 89,
-        "isbn": "742742659-2",
-        "publicationDate": new Date("1999-06-16"),
-        "description": "description",
-        "authors": [],
-        "creationDate": new Date("2022-09-08T19:41:43.366+00:00"),
-        "dateOfLastModification": new Date("2022-09-08T19:41:43.366+00:00")
       }
-    ]
   }
 
 }
