@@ -1,0 +1,56 @@
+.title {
+  margin: 10px auto;
+  text-align: center;
+}
+
+.comic-frame {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.button-space {
+  position: relative;
+}
+
+.button-container {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.button-container div {
+  margin: 20px auto;
+}
+
+.action-button {
+  color: white;
+}
+
+.quantity {
+  max-width: 100px;
+  display: flex;
+  background-color: rgb(255, 82, 82);
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.quantity span {
+  color: white;
+  align-self: center;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.selector-disabled {
+  box-shadow: none;
+  background-color: transparent;
+  color: #bfbfbf !important;
+}
+

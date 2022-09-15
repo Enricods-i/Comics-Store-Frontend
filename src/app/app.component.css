@@ -2,12 +2,22 @@
   height: 7%;
 }
 
+.logo {
+  font-size: larger;
+  width: 280px;
+}
+
+.capital {
+  font-weight: bold;
+  color: rgb(255, 82, 82);
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
 .controls {
-  width: 15%;
+  width: 280px;
   display: flex;
   justify-content: space-between;
 }
@@ -37,6 +47,4 @@
   display: flex;
   justify-content: space-between;
 }
-
-
 

@@ -16,7 +16,6 @@ export class ComicViewerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.mockData();
   }
 
   mockData(){

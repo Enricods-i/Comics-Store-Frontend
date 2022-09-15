@@ -11,11 +11,10 @@ export class CollectionSearchBarComponent {
   query: QueryStructure = {
     collectionName: '',
     authorName: '',
-    categoryName: '',
+    categoryName: ''
   };
 
   advancedSearch: boolean = false;
-
   focusOnFields: boolean[] = [false, false, false];
 
   @Output() queryEmitter = new EventEmitter<QueryStructure>();

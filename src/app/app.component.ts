@@ -7,7 +7,6 @@ import { User } from './model/User';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Comics Store';
 
   user!: User;
 

@@ -30,9 +30,10 @@ import { CollectionViewerComponent } from './collection-viewer/collection-viewer
 import { NavigationCatalogComponent } from './navigation-catalog/navigation-catalog.component';
 import { CollectionSearchBarComponent } from './collection-search-bar/collection-search-bar.component';
 import { ComicViewerComponent } from './comic-viewer/comic-viewer.component';
+import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, CollectionSearchBarComponent, CollectionViewerComponent, ComicViewerComponent],
+  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, CollectionSearchBarComponent, CollectionViewerComponent, ComicViewerComponent, CatalogPageComponent],
   imports: [
     BrowserModule,
     FormsModule,
