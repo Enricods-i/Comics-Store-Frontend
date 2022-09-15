@@ -1,0 +1,25 @@
+<div class="title">
+  <h1>Liste desideri</h1>
+  <button mat-mini-fab (click)="openDialog('Nuova lista desideri','Nome')" class="action-button">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div *ngFor="let list of wishLists" class="container">
+  <a href="#" class="list-name">{{ list.name }}</a>
+  <div>
+    <button
+      mat-icon-button
+      color="accent"
+      (click)="openDialog('Lista desideri '+list.name,'Nuovo nome')"
+    >
+      <mat-icon>create</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      color="accent"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

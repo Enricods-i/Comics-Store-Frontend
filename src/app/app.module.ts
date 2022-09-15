@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatNativeDateModule } from '@angular/material/core';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,6 +22,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatRippleModule} from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { LoginComponent } from './login/login.component';
@@ -35,9 +35,11 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { AuthorPageComponent } from './author-page/author-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { WishListContentComponent } from './wish-list-content/wish-list-content.component';
+import { WishListsPageComponent } from './wish-lists-page/wish-lists-page.component';
+import { InputDialogComponent } from './input-dialog/input-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent],
+  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -58,7 +60,8 @@ import { WishListContentComponent } from './wish-list-content/wish-list-content.
     MatChipsModule,
     MatRippleModule,
     MatExpansionModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -24,6 +24,7 @@ export class AuthorPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.mockData();
   }
 
   private getCollections(){

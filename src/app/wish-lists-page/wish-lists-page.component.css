@@ -1,0 +1,32 @@
+.title {
+  width: 280px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.list-name {
+  padding: 5px;
+  align-self: center;
+
+  font-family: "Acme";
+  font-size: large;
+}
+
+.action-button {
+  color: white;
+}
