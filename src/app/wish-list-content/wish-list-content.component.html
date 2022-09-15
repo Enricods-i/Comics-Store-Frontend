@@ -1,11 +1,11 @@
 <div class="title">
-  <h1>{{collection.name}}</h1>
-  <h3>{{collection.description}}</h3>
+  <h1>{{wishList.name}}</h1>
+  <h4>Lista desideri creata il {{wishList.creationDate | date: "dd//MM/yyyy"}}</h4>
 </div>
 
 <div class="comic-frame" *ngFor="let cmc of comics">
 
-      <app-comic-rendered [comic]="cmc"></app-comic-rendered>
+    <app-comic-rendered [comic]="cmc"></app-comic-rendered>
 
     <div class="button-space">
       <div class="button-container">
@@ -38,7 +38,7 @@
 
         <div>
           <button mat-mini-fab class="action-button">
-            <mat-icon>favorite_border</mat-icon>
+            <mat-icon>delete_outline</mat-icon>
           </button>
         </div>
 

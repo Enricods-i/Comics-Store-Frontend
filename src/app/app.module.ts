@@ -34,9 +34,10 @@ import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { AuthorPageComponent } from './author-page/author-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { WishListContentComponent } from './wish-list-content/wish-list-content.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent],
+  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent],
   imports: [
     BrowserModule,
     FormsModule,
