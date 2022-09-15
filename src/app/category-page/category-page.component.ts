@@ -1,21 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Author } from '../model/Author';
+import { Category } from '../model/Category';
 import { Collection } from '../model/Collection';
 
 @Component({
-  selector: 'app-author-page',
-  templateUrl: './author-page.component.html',
-  styleUrls: ['./author-page.component.css']
+  selector: 'app-category-page',
+  templateUrl: './category-page.component.html',
+  styleUrls: ['./category-page.component.css']
 })
-export class AuthorPageComponent implements OnInit {
+export class CategoryPageComponent implements OnInit {
 
-  private _author!: Author;
+  private _category!: Category;
 
-  get author() { return this._author; }
+  get category() { return this._category; }
 
   @Input()
-  set author(a: Author){
-    this._author = a;
+  set category(c: Category){
+    this._category=c;
     this.getCollections();
   }
 
@@ -24,21 +24,21 @@ export class AuthorPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.mockData();
   }
 
   private getCollections(){
-    //invoke rest call to get Collections wrote by author
+    //invoke rest call to get Collections belong to category
   }
 
   getComics(collection: Collection){
-    //invoke rest call to get Comics wrote by author belong to collection
+    //invoke rest call to get Comics belong to collection
   }
 
   mockData(){
-    this._author = {
+    this._category = {
       id: 3,
-      name: "Osvaldo Procioni",
-      biography: "Osvaldo è nato a Petra Pennata, nota regione della Senigallia in Antartide. È il quinto di tre figli, la sua passione per il fumetto nasce da bambino guardando Top Gun e da quel momento lavora per le più famose case editrici come Focus e Mela Verde.",
+      name: "Fumetto Americano",
       creationDate: new Date("2022-09-08T19:31:18.837+00:00"),
       dateOfLastModification: new Date("2022-09-08T19:31:18.837+00:00")
     }

@@ -1,0 +1,6 @@
+<div class="title">
+  <h1>{{category.name}}</h1>
+</div>
+<div class="collections">
+  <app-collections-rendered [collections]="collections" (collectionSelected)="getComics($event)"></app-collections-rendered>
+</div>

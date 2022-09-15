@@ -33,9 +33,10 @@ import { ComicRenderedComponent } from './comic-rendered/comic-rendered.componen
 import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { AuthorPageComponent } from './author-page/author-page.component';
+import { CategoryPageComponent } from './category-page/category-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent],
+  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent],
   imports: [
     BrowserModule,
     FormsModule,
