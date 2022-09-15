@@ -2,12 +2,17 @@
   border: 3px solid black;
 } */
 
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
 .card {
-  max-width: 256px;
-  max-height: 404px;
+  background-color: white;
   width: 256px;
   height: 404px;
-  margin: 10px;
+  margin: 10px auto;
 }
 
 .card:hover {
@@ -20,13 +25,8 @@
 }
 
 .title {
-  max-width: 300px;
   font-size: large;
   text-align: center;
-}
-
-mat-chip-list {
-  max-width: 300px;
 }
 
 mat-chip {

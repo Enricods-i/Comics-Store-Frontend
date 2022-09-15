@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Comic } from '../model/Comic';
 
 @Component({
-  selector: 'app-comic-viewer',
-  templateUrl: './comic-viewer.component.html',
-  styleUrls: ['./comic-viewer.component.css']
+  selector: 'app-comic-rendered',
+  templateUrl: './comic-rendered.component.html',
+  styleUrls: ['./comic-rendered.component.css']
 })
-export class ComicViewerComponent implements OnInit {
+export class ComicRenderedComponent implements OnInit {
 
   @Input()
   comic!: Comic;

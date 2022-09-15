@@ -1,0 +1,8 @@
+<div class="title">
+  <img [src]="'http://localhost:8080/authors/cover/'+author.id" alt="Image">
+  <h1>{{author.name}}</h1>
+</div>
+<p>{{author.biography}}</p>
+<div class="collections">
+  <app-collections-rendered [collections]="collections" (collectionSelected)="getComics($event)"></app-collections-rendered>
+</div>

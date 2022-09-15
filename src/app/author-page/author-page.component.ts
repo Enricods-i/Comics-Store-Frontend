@@ -1,27 +1,41 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Author } from '../model/Author';
 import { Collection } from '../model/Collection';
 
 @Component({
-  selector: 'app-collection-viewer',
-  templateUrl: './collection-viewer.component.html',
-  styleUrls: ['./collection-viewer.component.css'],
+  selector: 'app-author-page',
+  templateUrl: './author-page.component.html',
+  styleUrls: ['./author-page.component.css']
 })
-export class CollectionViewerComponent implements OnInit {
-  @Input() collections: Collection[] = [];
+export class AuthorPageComponent implements OnInit {
 
-  @Output() collectionSelected = new EventEmitter<Collection>();
+  @Input()
+  author!: Author;
 
-  constructor() {}
+  collections!: Collection[];
+
+  constructor() { }
 
   ngOnInit(): void {
     this.mockData();
   }
 
-  handleClick(c: Collection){
-    this.collectionSelected.emit(c);
+  private getCollections(){
+    //invoke rest call to get Collections wrote by author
+  }
+
+  getComics(collection: Collection){
+    //invoke rest call to get Comics wrote by author belong to collection
   }
 
   mockData(){
+    this.author = {
+      id: 3,
+      name: "Osvaldo Procioni",
+      biography: "Osvaldo è nato a Petra Pennata, nota regione della Senigallia in Antartide. È il quinto di tre figli, la sua passione per il fumetto nasce da bambino guardando Top Gun e da quel momento lavora per le più famose case editrici come Focus e Mela Verde.",
+      creationDate: new Date("2022-09-08T19:31:18.837+00:00"),
+      dateOfLastModification: new Date("2022-09-08T19:31:18.837+00:00")
+    }
     this.collections = [
       {
         name: "Amazing Spider-Man: The Night Gwen Stacy Died",
@@ -80,4 +94,5 @@ export class CollectionViewerComponent implements OnInit {
       }
   ];
   }
+
 }

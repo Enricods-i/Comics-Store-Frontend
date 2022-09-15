@@ -26,15 +26,16 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 import { LoginComponent } from './login/login.component';
-import { CollectionViewerComponent } from './collection-viewer/collection-viewer.component';
+import { CollectionsRenderedComponent } from './collections-rendered/collections-rendered.component';
 import { NavigationCatalogComponent } from './navigation-catalog/navigation-catalog.component';
-import { CollectionSearchBarComponent } from './collection-search-bar/collection-search-bar.component';
-import { ComicViewerComponent } from './comic-viewer/comic-viewer.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ComicRenderedComponent } from './comic-rendered/comic-rendered.component';
 import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
+import { AuthorPageComponent } from './author-page/author-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, CollectionSearchBarComponent, CollectionViewerComponent, ComicViewerComponent, CatalogPageComponent, CartPageComponent],
+  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent],
   imports: [
     BrowserModule,
     FormsModule,

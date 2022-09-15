@@ -3,11 +3,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { QueryStructure } from '../model/QueryStructure';
 
 @Component({
-  selector: 'app-collection-search-bar',
-  templateUrl: './collection-search-bar.component.html',
-  styleUrls: ['./collection-search-bar.component.css'],
+  selector: 'app-search-bar',
+  templateUrl: './search-bar.component.html',
+  styleUrls: ['./search-bar.component.css'],
 })
-export class CollectionSearchBarComponent {
+export class SearchBarComponent {
   query: QueryStructure = {
     collectionName: '',
     authorName: '',

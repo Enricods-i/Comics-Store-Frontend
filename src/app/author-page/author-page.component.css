@@ -1,0 +1,22 @@
+.title {
+  margin: 10px auto;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title img {
+  width: 200px;
+  margin-right: 20px;
+}
+
+p {
+  margin: 0px auto 20px auto;
+  width: 800px;
+}
+
+.collections {
+  margin: 10px auto;
+  width: 1200px;
+}
