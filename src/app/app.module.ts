@@ -37,9 +37,10 @@ import { CategoryPageComponent } from './category-page/category-page.component';
 import { WishListContentComponent } from './wish-list-content/wish-list-content.component';
 import { WishListsPageComponent } from './wish-lists-page/wish-lists-page.component';
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent],
+  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent, UserPageComponent],
   imports: [
     BrowserModule,
     FormsModule,

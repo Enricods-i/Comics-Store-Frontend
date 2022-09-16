@@ -1,0 +1,87 @@
+<mat-card *ngIf="user!==undefined">
+  <mat-card-title>Profilo</mat-card-title>
+  <mat-card-content>
+    <table *ngIf="!modifying">
+      <tr>
+        <td>Nome:</td>
+        <td>{{user.name}}</td>
+      </tr>
+      <tr>
+        <td>Cognome:</td>
+        <td>{{user.surname}}</td>
+      </tr>
+      <tr>
+        <td>Data di nascita:</td>
+        <td>{{user.birthDate | date: "dd/MM/yyyy"}}</td>
+      </tr>
+      <tr>
+        <td>E-mail:</td>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <td>Telefono:</td>
+        <td *ngIf="user.phoneNumber">{{user.phoneNumber}}</td>
+      </tr>
+      <tr>
+        <td>Città:</td>
+        <td *ngIf="user.city">{{user.city}}</td>
+      </tr>
+      <tr>
+        <td>Creato il:</td>
+        <td>{{user.creationDate | date: "dd/MM/yyyy, H:mm"}}</td>
+      </tr>
+    </table>
+
+    <table *ngIf="modifying">
+      <tr>
+        <td>Nome:</td>
+        <td>
+          <mat-form-field appearance="outline" color="accent">
+            <input matInput [placeholder]="user.name">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Cognome:</td>
+        <td>
+          <mat-form-field appearance="outline" color="accent">
+            <input matInput [placeholder]="user.surname">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Data di nascita:</td>
+        <td>{{user.birthDate | date: "dd/MM/yyyy"}}</td>
+      </tr>
+      <tr>
+        <td>E-mail:</td>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <td>Telefono:</td>
+        <td *ngIf="user.phoneNumber">
+          <mat-form-field appearance="outline" color="accent">
+            <input matInput [placeholder]="user.phoneNumber">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Città:</td>
+        <td *ngIf="user.city">
+          <mat-form-field appearance="outline" color="accent">
+            <input matInput [placeholder]="user.city">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Creato il:</td>
+        <td>{{user.creationDate | date: "dd/MM/yyyy, H:mm"}}</td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button color="accent" (click)="modifying=!modifying">
+      {{modifying ? "Fatto" : "Modifica"}}
+    </button>
+  </mat-card-actions>
+</mat-card>

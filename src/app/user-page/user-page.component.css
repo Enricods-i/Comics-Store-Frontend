@@ -1,0 +1,27 @@
+mat-card {
+  width: 800px;
+  margin: 20px auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid rgb(255, 82, 82);
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+td {
+  height: 80px;
+  width: 200px;
+  font-size: medium;
+}
+
+mat-form-field {
+  bottom: -10px;
+}
