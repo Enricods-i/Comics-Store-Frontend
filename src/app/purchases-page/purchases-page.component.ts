@@ -23,8 +23,8 @@ export class PurchasesPageComponent implements OnInit {
         id: 0,
         user: {
           id: 0,
-          name: "Giordano",
-          surname: "Bruno",
+          firstName: "Giordano",
+          lastName: "Bruno",
           birthDate: new Date("2022-09-08T19:31:18.837+00:00"),
           email: "nonmipiaceilfuoco@alrogo.it",
           phoneNumber: "3334445556",
@@ -140,8 +140,8 @@ export class PurchasesPageComponent implements OnInit {
         id: 0,
         user: {
           id: 0,
-          name: "Giordano",
-          surname: "Bruno",
+          firstName: "Giordano",
+          lastName: "Bruno",
           birthDate: new Date("2022-09-08T19:31:18.837+00:00"),
           email: "nonmipiaceilfuoco@alrogo.it",
           phoneNumber: "3334445556",

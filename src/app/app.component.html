@@ -36,12 +36,12 @@
 
 <ng-template #notLoggedIn>
   <span>
-    <button mat-flat-button color="accent" class="login-button">Accedi</button>
+    <button mat-flat-button color="accent" (click)="openLoginDialog()" class="login-button">Accedi</button>
   </span>
 </ng-template>
 
 <div class="content">
-  <app-user-page></app-user-page>
+  <app-user-page [user]="user"></app-user-page>
 </div>
 
 <router-outlet></router-outlet>

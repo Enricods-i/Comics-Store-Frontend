@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,7 +25,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 
-
 import { LoginComponent } from './login/login.component';
 import { CollectionsRenderedComponent } from './collections-rendered/collections-rendered.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -38,11 +38,13 @@ import { WishListsPageComponent } from './wish-lists-page/wish-lists-page.compon
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { PurchasesPageComponent } from './purchases-page/purchases-page.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent, UserPageComponent, PurchasesPageComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -64,7 +66,7 @@ import { PurchasesPageComponent } from './purchases-page/purchases-page.componen
     MatSnackBarModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

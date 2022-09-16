@@ -4,11 +4,11 @@
     <table *ngIf="!modifying">
       <tr>
         <td>Nome:</td>
-        <td>{{user.name}}</td>
+        <td>{{user.firstName}}</td>
       </tr>
       <tr>
         <td>Cognome:</td>
-        <td>{{user.surname}}</td>
+        <td>{{user.lastName}}</td>
       </tr>
       <tr>
         <td>Data di nascita:</td>
@@ -37,7 +37,7 @@
         <td>Nome:</td>
         <td>
           <mat-form-field appearance="outline" color="accent">
-            <input matInput [placeholder]="user.name">
+            <input matInput [placeholder]="user.firstName">
           </mat-form-field>
         </td>
       </tr>
@@ -45,7 +45,7 @@
         <td>Cognome:</td>
         <td>
           <mat-form-field appearance="outline" color="accent">
-            <input matInput [placeholder]="user.surname">
+            <input matInput [placeholder]="user.lastName">
           </mat-form-field>
         </td>
       </tr>
