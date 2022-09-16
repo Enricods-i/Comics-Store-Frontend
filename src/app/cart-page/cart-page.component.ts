@@ -61,6 +61,16 @@ export class CartPageComponent implements OnInit {
               dateOfLastModification: new Date('2022-09-08T19:31:18.758+00:00'),
             },
           ],
+
+          discount: {
+            id: 0,
+            name: 'Sconto primaverile',
+            percentage: 30,
+            activationDate: new Date('2022-09-08T19:31:18.758+00:00'),
+            expirationDate: new Date('2022-09-08T19:31:18.758+00:00'),
+            creationDate: new Date('2022-09-08T19:31:18.758+00:00'),
+            dateOfLastModification: new Date('2022-09-08T19:31:18.758+00:00'),
+          },
           creationDate: new Date('2022-09-08T19:41:43.354+00:00'),
           dateOfLastModification: new Date('2022-09-08T19:41:43.354+00:00'),
         },

@@ -39,6 +39,12 @@
   font-family: "Roboto";
 }
 
+.percentage {
+  margin: auto 10px;
+  border-radius: 15px;
+  background-color: greenyellow;
+}
+
 .comic-details-container .cmc-number {
   font-weight: bold;
   margin-bottom: 0px;
