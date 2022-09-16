@@ -27,7 +27,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import { LoginComponent } from './login/login.component';
 import { CollectionsRenderedComponent } from './collections-rendered/collections-rendered.component';
-import { NavigationCatalogComponent } from './navigation-catalog/navigation-catalog.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ComicRenderedComponent } from './comic-rendered/comic-rendered.component';
 import { CatalogPageComponent } from './catalog-page/catalog-page.component';
@@ -41,7 +40,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { PurchasesPageComponent } from './purchases-page/purchases-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NavigationCatalogComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent, UserPageComponent, PurchasesPageComponent],
+  declarations: [AppComponent, LoginComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent, UserPageComponent, PurchasesPageComponent],
   imports: [
     BrowserModule,
     FormsModule,
