@@ -1,0 +1,24 @@
+<div *ngIf="purchases!==undefined">
+  <mat-card *ngFor="let purchase of purchases">
+    <mat-card-content>
+      <table>
+        <tr>
+          <th>Fumetto</th>
+          <th>Prezzo</th>
+          <th>Sconto</th>
+          <th>Quantità</th>
+        </tr>
+        <tr *ngFor="let cip of purchase.content">
+          <td>{{cip.comic.collection.name}} {{cip.comic.number}}</td>
+          <td>€{{cip.price}}</td>
+          <td>{{cip.discount ? cip.discount.percentage+'%' : ''}}</td>
+          <td>{{cip.quantity}}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+    <div class="footer">
+      <span><strong>Effettuato il {{purchase.creationDate | date: "dd/MM/yyyy, H:mm"}}</strong></span>
+      <span><strong>Totale: €{{purchase.total}}</strong></span>
+    </div>
+  </mat-card>
+</div>

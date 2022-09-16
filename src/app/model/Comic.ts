@@ -1,5 +1,6 @@
 import { Author } from "./Author";
 import { Collection } from "./Collection";
+import { Discount } from "./Discount";
 
 export interface Comic{
   id : number;
@@ -11,6 +12,7 @@ export interface Comic{
   publicationDate : Date;
   description : string;
   authors: Author[];
+  discount?: Discount;
   creationDate : Date;
   dateOfLastModification: Date;
 }

@@ -1,0 +1,27 @@
+mat-card {
+  width: 800px;
+  margin: 40px auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid rgb(255, 82, 82);
+}
+
+td, th {
+  height: 50px;
+  width: 200px;
+  font-size: medium;
+  text-align: center;
+}
+
+.footer {
+  width: 80%;
+  margin: 40px auto 10px auto;
+  display: flex;
+  justify-content: space-between;
+}
