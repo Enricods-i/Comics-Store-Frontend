@@ -60,3 +60,7 @@
   font-size: medium;
   font-weight: bold;
 }
+
+.empty-message {
+  text-align: center;
+}

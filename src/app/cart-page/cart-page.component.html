@@ -1,27 +1,34 @@
 <div class="title">
   <h1>Carrello</h1>
-  <button mat-raised-button color="accent" class="action-button pay-button">Acquista</button>
+  <button
+    mat-raised-button
+    color="accent"
+    [disabled]="content.length == 0"
+    class="action-button pay-button"
+  >
+    Acquista
+  </button>
 </div>
 
-<div class="comic-frame" *ngFor="let item of content">
-
+<div *ngIf="content.length != 0; else cartEmpty">
+  <div class="comic-frame" *ngFor="let item of content">
     <app-comic-rendered [comic]="item.comic"></app-comic-rendered>
 
     <div class="button-space">
       <div class="button-container">
-
         <div class="quantity">
           <button
             mat-icon-button
-            (click)="increaseQuantity()"
+            [disabled]="item.quantity==1"
+            (click)="decreaseQuantity(item)"
             class="action-button"
           >
             <mat-icon>remove</mat-icon>
           </button>
-          <span>{{item.quantity}}</span>
+          <span>{{ item.quantity }}</span>
           <button
             mat-icon-button
-            (click)="decreaseQuantity()"
+            (click)="increaseQuantity(item)"
             class="action-button"
           >
             <mat-icon>add</mat-icon>
@@ -29,7 +36,7 @@
         </div>
 
         <div>
-          <button mat-mini-fab class="action-button">
+          <button mat-mini-fab (click)="removeComic(item)" class="action-button">
             <mat-icon>remove_shopping_cart</mat-icon>
           </button>
         </div>
@@ -39,13 +46,23 @@
             <mat-icon>favorite_border</mat-icon>
           </button>
         </div>
-
       </div>
     </div>
   </div>
+</div>
 
-  <div class="footer">
-    <h1></h1>
-    <button mat-raised-button color="accent" class="action-button pay-button">Acquista</button>
-  </div>
+<ng-template #cartEmpty>
+  <h2 class="empty-message">Qui non c'è nulla!</h2>
+</ng-template>
 
+<div class="footer">
+  <h1></h1>
+  <button
+    mat-raised-button
+    color="accent"
+    [disabled]="content.length == 0"
+    class="action-button pay-button"
+  >
+    Acquista
+  </button>
+</div>

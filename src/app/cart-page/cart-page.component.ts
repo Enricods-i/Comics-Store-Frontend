@@ -1,24 +1,59 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartService } from '../cart.service';
+import { ProblemCode } from '../common/ProblemCode';
 import { CartContent } from '../model/CartContent';
+import { Comic } from '../model/Comic';
+import { User } from '../model/User';
 
 @Component({
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.css'],
 })
-export class CartPageComponent implements OnInit {
+export class CartPageComponent {
+
+  @Input()
+  user!: User;
+
   @Input()
   content!: CartContent[];
 
-  constructor() {}
+  constructor(private cartService: CartService, private snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {
-    this.mockData();
+  showMessage(msg: string){
+    this.snackBar.open(msg, undefined, {duration: 5000});
   }
 
-  increaseQuantity() {}
+  increaseQuantity(cc: CartContent) {
+    this.cartService.changeQuantity(this.user.id, cc.comic.id, cc.quantity+1).subscribe({
+      next: (response: any) => {
+        cc.quantity++;
+      },
+      error: (problem: HttpErrorResponse) => {
+        if(problem.error[0].code == ProblemCode.COMIC_QUANTITY_UNAVAIABLE) this.showMessage("Quantià non disponibile!");
+        else console.error(problem.error[0]);
+      }
+    });
+  }
 
-  decreaseQuantity() {}
+  decreaseQuantity(cc: CartContent) {
+    this.cartService.changeQuantity(this.user.id, cc.comic.id, cc.quantity-1).subscribe({
+      next: (response: any) => {
+        cc.quantity--;
+      }
+    });
+  }
+
+  removeComic(cc: CartContent) {
+    this.cartService.deleteComic(this.user.id, cc.comic.id).subscribe({
+      next: (response: any) => {
+        let index = this.content.indexOf(cc);
+        this.content.splice(index, 1);
+      }
+    });
+  }
 
   mockData() {
     this.content = [

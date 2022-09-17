@@ -4,11 +4,11 @@ export interface Collection {
   id: number;
   name: string;
   price: number;
-  yearOfRelease?: number;
-  formatAndBinding?: string;
-  color?: boolean;
-  description?: string;
-  categories?: Category[];
+  yearOfRelease: number | null;
+  formatAndBinding: string | null;
+  color: boolean | null;
+  description: string | null;
+  categories: Category[] | null;
   creationDate: Date;
   dateOfLastModification: Date;
 }
