@@ -45,6 +45,8 @@
   background-color: transparent;
 
   border-style: none;
+
+  font-size: medium !important;
 }
 
 .row input::placeholder {

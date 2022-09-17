@@ -2,9 +2,12 @@
   height: 7%;
 }
 
+.side-element {
+  width: 280px;;
+}
+
 .logo {
   font-size: larger;
-  width: 280px;
 }
 
 .capital {
@@ -17,9 +20,12 @@
 }
 
 .controls {
-  width: 280px;
   display: flex;
   justify-content: space-between;
+}
+
+#login-button-container {
+  text-align: end;
 }
 
 ::ng-deep .mat-badge-content {

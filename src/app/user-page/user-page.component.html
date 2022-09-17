@@ -1,87 +1,131 @@
-<mat-card *ngIf="user!==undefined">
+<mat-card *ngIf="user !== undefined">
   <mat-card-title>Profilo</mat-card-title>
   <mat-card-content>
     <table *ngIf="!modifying">
       <tr>
         <td>Nome:</td>
-        <td>{{user.firstName}}</td>
+        <td>{{ user.firstName }}</td>
       </tr>
       <tr>
         <td>Cognome:</td>
-        <td>{{user.lastName}}</td>
+        <td>{{ user.lastName }}</td>
       </tr>
       <tr>
         <td>Data di nascita:</td>
-        <td>{{user.birthDate | date: "dd/MM/yyyy"}}</td>
+        <td>{{ user.birthDate | date: "dd/MM/yyyy" }}</td>
       </tr>
       <tr>
         <td>E-mail:</td>
-        <td>{{user.email}}</td>
+        <td>{{ user.email }}</td>
       </tr>
       <tr>
         <td>Telefono:</td>
-        <td *ngIf="user.phoneNumber">{{user.phoneNumber}}</td>
+        <td *ngIf="user.phoneNumber">{{ user.phoneNumber }}</td>
       </tr>
       <tr>
         <td>Città:</td>
-        <td *ngIf="user.city">{{user.city}}</td>
+        <td *ngIf="user.city">{{ user.city }}</td>
       </tr>
       <tr>
         <td>Creato il:</td>
-        <td>{{user.creationDate | date: "dd/MM/yyyy, H:mm"}}</td>
+        <td>{{ user.creationDate | date: "dd/MM/yyyy, H:mm" }}</td>
       </tr>
     </table>
 
-    <table *ngIf="modifying">
-      <tr>
-        <td>Nome:</td>
-        <td>
+    <form (submit)="update()" id="updateForm" #updateForm="ngForm">
+      <table *ngIf="modifying">
+        <tr>
+          <td>Nome:</td>
+          <td>
+            <mat-form-field appearance="outline" color="accent">
+              <input
+              matInput
+              required
+              minlength="2"
+              maxlength="20"
+              [(ngModel)]="newUser.firstName"
+              name="new-name"
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>Cognome:</td>
+          <td>
+            <mat-form-field appearance="outline" color="accent">
+              <input
+              matInput
+              required
+              minlength="2"
+              maxlength="20"
+              [(ngModel)]="newUser.lastName"
+              name="new-surname"
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>Data di nascita:</td>
+          <td>{{ newUser.birthDate | date: "dd/MM/yyyy" }}</td>
+        </tr>
+        <tr>
+          <td>E-mail:</td>
           <mat-form-field appearance="outline" color="accent">
-            <input matInput [placeholder]="user.firstName">
+            <input
+              matInput
+              required
+              email
+              maxlength="50"
+              [(ngModel)]="newUser.email"
+              name="new-email"
+            />
           </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>Cognome:</td>
-        <td>
-          <mat-form-field appearance="outline" color="accent">
-            <input matInput [placeholder]="user.lastName">
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>Data di nascita:</td>
-        <td>{{user.birthDate | date: "dd/MM/yyyy"}}</td>
-      </tr>
-      <tr>
-        <td>E-mail:</td>
-        <td>{{user.email}}</td>
-      </tr>
-      <tr>
-        <td>Telefono:</td>
-        <td *ngIf="user.phoneNumber">
-          <mat-form-field appearance="outline" color="accent">
-            <input matInput [placeholder]="user.phoneNumber">
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>Città:</td>
-        <td *ngIf="user.city">
-          <mat-form-field appearance="outline" color="accent">
-            <input matInput [placeholder]="user.city">
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>Creato il:</td>
-        <td>{{user.creationDate | date: "dd/MM/yyyy, H:mm"}}</td>
-      </tr>
-    </table>
+        </tr>
+        <tr>
+          <td>Telefono:</td>
+          <td>
+            <mat-form-field appearance="outline" color="accent">
+              <input
+              matInput
+              tel
+              minlength="6"
+              maxlength="20"
+              [(ngModel)]="newUser.phoneNumber"
+              name="new-phoneNumber"
+            />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>Città:</td>
+          <td>
+            <mat-form-field appearance="outline" color="accent">
+              <input
+              matInput
+              minlength="2"
+              maxlength="20"
+              [(ngModel)]="newUser.city"
+              name="new-city"
+            />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>Creato il:</td>
+          <td>{{ newUser.creationDate | date: "dd/MM/yyyy, H:mm" }}</td>
+        </tr>
+      </table>
+    </form>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-button color="accent" (click)="modifying=!modifying">
-      {{modifying ? "Fatto" : "Modifica"}}
+    <button *ngIf="!modifying" mat-button color="accent" (click)="modifying = true">
+      Modifica
+    </button>
+    <button *ngIf="modifying" mat-button color="accent" (click)="resetNewUser()">
+      Annulla
+    </button>
+    <button *ngIf="modifying" type="submit" form="updateForm" mat-button color="accent">
+      Fatto
     </button>
   </mat-card-actions>
 </mat-card>
