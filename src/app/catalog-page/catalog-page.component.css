@@ -1,3 +1,15 @@
+.paginator {
+  width: 800px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.paginator input {
+  width: 10px;
+  border-style: none;
+}
+
 .title {
   margin: 10px auto;
   text-align: center;
@@ -52,5 +64,9 @@
   box-shadow: none;
   background-color: transparent;
   color: #bfbfbf !important;
+}
+
+.no-result {
+  text-align: center;
 }
 

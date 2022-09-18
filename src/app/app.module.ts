@@ -42,6 +42,7 @@ import { PurchasesPageComponent } from './purchases-page/purchases-page.componen
 import { UserService } from './user.service';
 import { CartService } from './cart.service';
 import { CollectionService } from './collection.service';
+import { ComicService } from './comic.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent, UserPageComponent, PurchasesPageComponent],
@@ -70,7 +71,7 @@ import { CollectionService } from './collection.service';
     MatDialogModule,
     MatPaginatorModule
   ],
-  providers: [UserService, CartService, CollectionService],
+  providers: [UserService, CartService, CollectionService, ComicService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -20,26 +20,48 @@ export class CollectionService {
     );
   }
 
-  getByCategory(categoryId: number): Observable<Collection[]> {
+  getByCategory(categoryId: number, pageNumber: number = 0): Observable<Collection[]> {
     return this.http.get<Collection[]>(
-      this.BASE_URL + '/v/byCategory?ctgr=' + categoryId
+      this.BASE_URL + '/v/byCategory?ctgr=' + categoryId +
+      '&pageNumber=' +pageNumber
     );
   }
 
-  getByAuthor(authorId: number): Observable<Collection[]> {
+  getByAuthor(authorId: number, pageNumber: number = 0): Observable<Collection[]> {
     return this.http.get<Collection[]>(
-      this.BASE_URL + '/v/byAuthor?auth=' + authorId
+      this.BASE_URL + '/v/byAuthor?auth=' + authorId +
+      '&pageNumber=' +pageNumber
     );
   }
 
   advancedSearch(name: string | null, categoryName: string | null, authorName: string | null, pageNumber: number = 0): Observable<Collection[]> {
-    return this.http.get<Collection[]>(
-      this.BASE_URL +
-      '/v/search?ctgr=' + categoryName +
-      '&auth=' + authorName +
-      '&name=' + name +
-      '&pageNumber=' + pageNumber
-    );
+    let url: string = this.BASE_URL + '/v/search?';
+    let first: boolean = true;
+    if(name!=null){
+      if(first){
+        url.concat('?');
+        first = false;
+      }
+      else url.concat('&');
+      url.concat('name=', name);
+    }
+    if(categoryName!=null){
+      if(first){
+        url.concat('?');
+        first = false;
+      }
+      else url.concat('&');
+      url.concat('ctgr=',categoryName);
+    }
+    if(authorName!=null){
+      if(first){
+        url.concat('?');
+        first = false;
+      }
+      else url.concat('&');
+      url.concat('auth=',authorName);
+    }
+    return this.http.get<Collection[]>(url + '&pageNumber=' +pageNumber);
   }
 
 }

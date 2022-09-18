@@ -1,52 +1,66 @@
-<mat-toolbar [class.mat-elevation-z1]="true" color="primary" class="toolbar">
-  <h1 class="logo side-element"><span class="capital">C</span>omics <span class="capital">S</span>tore</h1>
-  <span class="spacer"></span>
-  <app-search-bar></app-search-bar>
-  <span class="spacer"></span>
-  <span *ngIf="user; else notLoggedIn" class="controls side-element">
-    <button mat-button color="accent">Liste Desideri</button>
-    <button mat-mini-fab color="accent">
-      <mat-icon matBadge="15" matBadgePosition="below" matBadgeOverlap="false" class="icon">
-        shopping_cart
-      </mat-icon>
-    </button>
-
-    <button mat-mini-fab [matMenuTriggerFor]="menu">
-      <mat-icon class="icon">person</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <!-- <mat-icon>settings</mat-icon> -->
-        <span>Profilo</span>
+<div class="container">
+  <mat-toolbar [class.mat-elevation-z1]="true" color="primary" class="toolbar">
+    <h1 class="logo side-element">
+      <span class="capital">C</span>omics <span class="capital">S</span>tore
+    </h1>
+    <span class="spacer"></span>
+    <app-search-bar></app-search-bar>
+    <span class="spacer"></span>
+    <span *ngIf="user; else notLoggedIn" class="controls side-element">
+      <button mat-button color="accent">Liste Desideri</button>
+      <button mat-mini-fab color="accent">
+        <mat-icon
+          matBadge="15"
+          matBadgePosition="below"
+          matBadgeOverlap="false"
+          class="icon"
+        >
+          shopping_cart
+        </mat-icon>
       </button>
-      <button mat-menu-item>
-        <!-- <mat-icon>euro_symbol</mat-icon> -->
-        <span>Acquisti</span>
+
+      <button mat-mini-fab [matMenuTriggerFor]="menu">
+        <mat-icon class="icon">person</mat-icon>
       </button>
-      <button mat-menu-item>
-        <!-- <mat-icon>exit_to_app</mat-icon> -->
-        <span>Esci</span>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <!-- <mat-icon>settings</mat-icon> -->
+          <span>Profilo</span>
+        </button>
+        <button mat-menu-item>
+          <!-- <mat-icon>euro_symbol</mat-icon> -->
+          <span>Acquisti</span>
+        </button>
+        <button mat-menu-item>
+          <!-- <mat-icon>exit_to_app</mat-icon> -->
+          <span>Esci</span>
+        </button>
+      </mat-menu>
+    </span>
+  </mat-toolbar>
+
+  <ng-template #notLoggedIn>
+    <span class="side-element" id="login-button-container">
+      <button
+        mat-flat-button
+        color="accent"
+        (click)="openLoginDialog()"
+        class="login-button"
+      >
+        Accedi
       </button>
-    </mat-menu>
-  </span>
+    </span>
+  </ng-template>
 
+  <div [ngStyle]="{'height.px': innerHeight-80}" class="content">
+    <router-outlet></router-outlet>
+  </div>
 
-</mat-toolbar>
-
-
-<ng-template #notLoggedIn>
-  <span class="side-element" id="login-button-container">
-    <button mat-flat-button color="accent" (click)="openLoginDialog()" class="login-button">Accedi</button>
-  </span>
-</ng-template>
-
-<div class="content">
-  <router-outlet></router-outlet>
-  <!-- <app-cart-page [user]="user" [content]="getCartContent()"></app-cart-page> -->
-</div>
-
-
-<div [class.mat-elevation-z2]="true" class="bottom-bar">
-  <span>Enrico De Salve</span>
-  <span>Comics Store - Progetto di Piattaforme Software per Applicazioni sul Web</span>
+  <div [class.mat-elevation-z2]="true" class="bottom-bar">
+    <span>Enrico De Salve</span>
+    <span
+      >Comics Store - Progetto di Piattaforme Software per Applicazioni sul
+      Web</span
+    >
+  </div>
 </div>

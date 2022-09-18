@@ -18,7 +18,10 @@ export class CollectionsRenderedComponent implements OnInit, OnDestroy {
   currentPage: number = 1;
   collections: Collection[] = [];
 
-  constructor(private router: Router, private collectionService: CollectionService) {
+  constructor(
+    private router: Router,
+    private collectionService: CollectionService
+  ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
@@ -72,6 +75,7 @@ export class CollectionsRenderedComponent implements OnInit, OnDestroy {
   }
 
   showComics(c: Collection) {
+    this.router.navigateByUrl('catalog/collection', { state: {collection: c}})
   }
 
   ngOnDestroy(): void {

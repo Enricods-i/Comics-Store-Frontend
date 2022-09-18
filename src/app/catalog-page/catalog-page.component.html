@@ -1,29 +1,55 @@
-<div class="title">
-  <h1>{{collection.name}}</h1>
-  <h3>{{collection.description}}</h3>
+<div class="paginator">
+  <span>
+    <button mat-icon-button [disabled]="currentPage==1" (click)="previousPage()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <span>{{currentPage}}</span>
+    <button mat-icon-button [disabled]="comics.length==0" (click)="nextPage()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </span>
 </div>
 
-<div class="comic-frame" *ngFor="let cmc of comics">
+<div *ngIf="comics.length != 0; else noResult">
+  <div class="title">
+    <h1>{{ comics[0].collection.name }}</h1>
+    <h3>{{ comics[0].collection.description }}</h3>
+  </div>
 
-      <app-comic-rendered [comic]="cmc"></app-comic-rendered>
+  <div class="comic-frame" *ngFor="let cmc of comics">
+    <app-comic-rendered [comic]="cmc"></app-comic-rendered>
 
     <div class="button-space">
       <div class="button-container">
-
-        <div [ngClass]="cmc.quantity==0 ? 'selector-disabled' : ''" class="quantity">
+        <div
+          [ngClass]="cmc.quantity == 0 ? 'selector-disabled' : ''"
+          class="quantity"
+        >
           <button
             mat-icon-button
-            [disabled]="cmc.quantity==0"
-            (click)="comicQuantity.innerText!='1' ? comicQuantity.innerText=decrease(comicQuantity.innerText) : comicQuantity.innerText"
+            [disabled]="cmc.quantity == 0"
+            (click)="
+              comicQuantity.innerText != '1'
+                ? (comicQuantity.innerText = decrease(comicQuantity.innerText))
+                : comicQuantity.innerText
+            "
             class="action-button"
           >
             <mat-icon>remove</mat-icon>
           </button>
-          <span [ngClass]="cmc.quantity==0 ? 'selector-disabled' : ''" #comicQuantity>1</span>
+          <span
+            [ngClass]="cmc.quantity == 0 ? 'selector-disabled' : ''"
+            #comicQuantity
+            >1</span
+          >
           <button
             mat-icon-button
-            [disabled]="cmc.quantity==0"
-            (click)="comicQuantity.innerText!='9' ? comicQuantity.innerText=increase(comicQuantity.innerText) : comicQuantity.innerText"
+            [disabled]="cmc.quantity == 0"
+            (click)="
+              comicQuantity.innerText != '9'
+                ? (comicQuantity.innerText = increase(comicQuantity.innerText))
+                : comicQuantity.innerText
+            "
             class="action-button"
           >
             <mat-icon>add</mat-icon>
@@ -31,7 +57,11 @@
         </div>
 
         <div>
-          <button mat-mini-fab [disabled]="cmc.quantity == 0" class="action-button">
+          <button
+            mat-mini-fab
+            [disabled]="cmc.quantity == 0"
+            class="action-button"
+          >
             <mat-icon>add_shopping_cart</mat-icon>
           </button>
         </div>
@@ -41,7 +71,11 @@
             <mat-icon>favorite_border</mat-icon>
           </button>
         </div>
-
       </div>
     </div>
   </div>
+</div>
+
+<ng-template #noResult>
+  <h2 class="no-result">Non c'è niente qui!</h2>
+</ng-template>
