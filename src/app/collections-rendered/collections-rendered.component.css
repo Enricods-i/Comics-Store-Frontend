@@ -1,8 +1,18 @@
-/* mat-grid-tile {
-  border: 3px solid black;
-} */
+.paginator {
+  width: 800px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.paginator input {
+  width: 10px;
+  border-style: none;
+}
 
 .container {
+  width: 800px;
+  margin: 20px auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
@@ -35,4 +45,8 @@ mat-chip {
 
 mat-chip:hover {
   cursor: pointer;
+}
+
+.no-result {
+  text-align: center;
 }

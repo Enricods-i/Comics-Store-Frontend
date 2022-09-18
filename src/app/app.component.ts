@@ -27,7 +27,7 @@ export class AppComponent {
   cart!: Cart;
 
   constructor(public loginDialog: MatDialog, private cartService: CartService) {
-    this.user = {
+    /* this.user = {
       "id": 7,
       "firstName": "Florencia",
       "lastName": "Loddon",
@@ -37,7 +37,7 @@ export class AppComponent {
       "city": "Muḩradah",
       "creationDate": new Date("2022-09-08T19:31:09.825+00:00"),
       "dateOfLastModification": new Date("2022-09-08T19:31:09.825+00:00")
-    }
+    } */
   }
 
   openLoginDialog(){
@@ -62,10 +62,6 @@ export class AppComponent {
       return this.cart.content;
     else
       return [];
-  }
-
-  log(foo: any){
-    console.log(foo);
   }
 
 }

@@ -41,10 +41,10 @@
 </ng-template>
 
 <div class="content">
-  <app-cart-page [user]="user" [content]="getCartContent()"></app-cart-page>
+  <router-outlet></router-outlet>
+  <!-- <app-cart-page [user]="user" [content]="getCartContent()"></app-cart-page> -->
 </div>
 
-<router-outlet></router-outlet>
 
 <div [class.mat-elevation-z2]="true" class="bottom-bar">
   <span>Enrico De Salve</span>

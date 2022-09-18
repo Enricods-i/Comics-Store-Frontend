@@ -1,4 +1,5 @@
 .toolbar {
+  min-height: 51px;
   height: 7%;
 }
 
@@ -44,11 +45,15 @@
 .content {
   width: 100%;
   margin: 10px auto;
-  height: 88.8%;
+  height: 100%;
   overflow: scroll;
 }
 
 .bottom-bar {
+  position: absolute;
+  bottom: 0;
+  min-height: 20px;
+  width: 100%;
   background-color: white;
   display: flex;
   justify-content: space-between;

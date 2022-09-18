@@ -24,6 +24,7 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { LoginComponent } from './login/login.component';
 import { CollectionsRenderedComponent } from './collections-rendered/collections-rendered.component';
@@ -39,6 +40,8 @@ import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { PurchasesPageComponent } from './purchases-page/purchases-page.component';
 import { UserService } from './user.service';
+import { CartService } from './cart.service';
+import { CollectionService } from './collection.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent, UserPageComponent, PurchasesPageComponent],
@@ -64,9 +67,10 @@ import { UserService } from './user.service';
     MatRippleModule,
     MatExpansionModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
-  providers: [UserService],
+  providers: [UserService, CartService, CollectionService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

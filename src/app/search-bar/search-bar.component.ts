@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { CollectionService } from '../collection.service';
+import { Collection } from '../model/Collection';
 import { QueryStructure } from '../model/QueryStructure';
 
 @Component({
@@ -11,16 +14,19 @@ export class SearchBarComponent {
   query: QueryStructure = {
     collectionName: '',
     authorName: '',
-    categoryName: ''
+    categoryName: '',
   };
 
-  advancedSearch: boolean = false;
+  advanced: boolean = false;
   focusOnFields: boolean[] = [false, false, false];
 
-  @Output() queryEmitter = new EventEmitter<QueryStructure>();
+  constructor(
+    private _snackBar: MatSnackBar,
+    private collectionService: CollectionService,
+    private router: Router
+  ) {}
 
-  constructor(private _snackBar: MatSnackBar){}
-
+  /*For the html render */
   setFieldFocus(index: number, value: boolean) {
     this.focusOnFields[index] = value;
   }
@@ -48,17 +54,43 @@ export class SearchBarComponent {
         break;
     }
   }
+  /*For the html render */
 
-  onSubmit() {
+  search() {
     if (
-      (this.query.collectionName.length > 0 && this.query.collectionName.length < 3) ||
+      this.query.authorName.length == 0 &&
+      this.query.categoryName.length == 0 &&
+      this.query.collectionName.length == 0
+    )
+      return;
+    if (
+      (this.query.collectionName.length > 0 &&
+        this.query.collectionName.length < 3) ||
       (this.query.authorName.length > 0 && this.query.authorName.length < 3) ||
       (this.query.categoryName.length > 0 && this.query.categoryName.length < 3)
     ) {
-      this._snackBar.open("Inserire almeno 3 caratteri", undefined, {duration:5000})
+      this._snackBar.open('Inserire almeno 3 caratteri', undefined, {
+        duration: 5000,
+      });
       return;
     }
-    this.queryEmitter.emit(this.query);
+    this.router.navigateByUrl('catalog', { state: { query: this.query } });
   }
 
+  /* private advancedSearch(){
+    this.collectionService.advancedSearch(
+      this.query.collectionName ? this.query.collectionName : null,
+      this.query.categoryName ? this.query.categoryName : null,
+      this.query.authorName ? this.query.authorName : null
+      )
+  }
+
+  private simpleSearch() {
+    console.log(this.query.collectionName);
+    this.collectionService.getByName(this.query.collectionName).subscribe({
+      next: (response: Collection[]) => {
+        this.router.navigate(['/catalog'], { state: {collections: response} });
+      }
+    });
+  } */
 }
