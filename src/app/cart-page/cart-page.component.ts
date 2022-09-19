@@ -3,33 +3,51 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartService } from '../cart.service';
 import { ProblemCode } from '../common/ProblemCode';
+import { Cart } from '../model/Cart';
 import { CartContent } from '../model/CartContent';
 import { Comic } from '../model/Comic';
 import { User } from '../model/User';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.css'],
 })
-export class CartPageComponent {
+export class CartPageComponent implements OnInit{
 
-  @Input()
-  user!: User;
+  user?: User;
+  cart?: Cart;
 
-  @Input()
-  content!: CartContent[];
+  constructor(
+    private cartService: CartService,
+    private snackBar: MatSnackBar,
+    private sessionService: SessionService
+  )
+  {}
 
-  constructor(private cartService: CartService, private snackBar: MatSnackBar) {}
+  ngOnInit(): void {
+    this.sessionService.currentUser.subscribe(user => this.user = user);
+    this.sessionService.currentCart.subscribe(cart => this.cart = cart);
+  }
 
   showMessage(msg: string){
     this.snackBar.open(msg, undefined, {duration: 5000});
   }
 
   increaseQuantity(cc: CartContent) {
+    if (this.user == undefined){
+      this.showMessage("Errore interno.");
+      return;
+    }
     this.cartService.changeQuantity(this.user.id, cc.comic.id, cc.quantity+1).subscribe({
-      next: (response: any) => {
+      next: () => {
+        if (this.cart == undefined ){
+          this.showMessage("Errore interno.");
+          return;
+        }
         cc.quantity++;
+        this.cart.size++;
       },
       error: (problem: HttpErrorResponse) => {
         if(problem.error[0].code == ProblemCode.COMIC_QUANTITY_UNAVAIABLE) this.showMessage("Quantià non disponibile!");
@@ -39,120 +57,38 @@ export class CartPageComponent {
   }
 
   decreaseQuantity(cc: CartContent) {
+    if (this.user == undefined){
+      this.showMessage("Errore interno.");
+      return;
+    }
     this.cartService.changeQuantity(this.user.id, cc.comic.id, cc.quantity-1).subscribe({
-      next: (response: any) => {
+      next: () => {
+        if (this.cart == undefined ){
+          this.showMessage("Errore interno.");
+          return;
+        }
         cc.quantity--;
+        this.cart.size--;
       }
     });
   }
 
   removeComic(cc: CartContent) {
+    if (this.user == undefined){
+      this.showMessage("Errore interno.");
+      return;
+    }
     this.cartService.deleteComic(this.user.id, cc.comic.id).subscribe({
-      next: (response: any) => {
-        let index = this.content.indexOf(cc);
-        this.content.splice(index, 1);
+      next: () => {
+        if (this.cart == undefined ){
+          this.showMessage("Errore interno.");
+          return;
+        }
+        let index = this.cart.content.indexOf(cc);
+        this.cart.content.splice(index, 1);
+        this.cart.size -= cc.quantity;
       }
     });
   }
 
-  mockData() {
-    this.content = [
-      {
-        quantity: 1,
-        comic: {
-          id: 1,
-          collection: {
-            name: "L'attacco dei Giganti",
-            id: 1,
-            price: 7.19,
-            yearOfRelease: 2019,
-            formatAndBinding: 'Brossurato',
-            color: false,
-            description: 'Ecco la descrizione',
-            categories: [],
-            creationDate: new Date('2022-09-08T19:31:18.758+00:00'),
-            dateOfLastModification: new Date('2022-09-08T19:31:18.758+00:00'),
-          },
-          number: 1,
-          quantity: 17,
-          pages: 55,
-          isbn: '565582492-2',
-          publicationDate: new Date('2022-05-11'),
-          description:
-            'Guarda questa è una descrizione molto lunga di questo fumetto che racconta di un vecchio al mare. I vecchi sono sempre al mare.',
-          authors: [
-            {
-              id: 1,
-              name: 'Giovan',
-              biography: '',
-              creationDate: new Date('2022-09-08T19:31:18.758+00:00'),
-              dateOfLastModification: new Date('2022-09-08T19:31:18.758+00:00'),
-            },
-            {
-              id: 2,
-              name: 'Nino',
-              biography: '',
-              creationDate: new Date('2022-09-08T19:31:18.758+00:00'),
-              dateOfLastModification: new Date('2022-09-08T19:31:18.758+00:00'),
-            },
-          ],
-
-          discount: {
-            id: 0,
-            name: 'Sconto primaverile',
-            percentage: 30,
-            activationDate: new Date('2022-09-08T19:31:18.758+00:00'),
-            expirationDate: new Date('2022-09-08T19:31:18.758+00:00'),
-            creationDate: new Date('2022-09-08T19:31:18.758+00:00'),
-            dateOfLastModification: new Date('2022-09-08T19:31:18.758+00:00'),
-          },
-          creationDate: new Date('2022-09-08T19:41:43.354+00:00'),
-          dateOfLastModification: new Date('2022-09-08T19:41:43.354+00:00'),
-        },
-      },
-      {
-        quantity: 2,
-        comic: {
-          id: 2,
-          collection: {
-            name: "L'attacco dei Giganti",
-            id: 1,
-            price: 7.19,
-            yearOfRelease: 2019,
-            formatAndBinding: 'Brossurato',
-            color: false,
-            description: 'Ecco la descrizione',
-            categories: [],
-            creationDate: new Date('2022-09-08T19:31:18.758+00:00'),
-            dateOfLastModification: new Date('2022-09-08T19:31:18.758+00:00'),
-          },
-          number: 2,
-          quantity: 0,
-          pages: 55,
-          isbn: '565582492-2',
-          publicationDate: new Date('2022-05-11'),
-          description:
-            'Guarda questa è una descrizione molto lunga di questo fumetto che racconta di un vecchio al mare. I vecchi sono sempre al mare.',
-          authors: [
-            {
-              id: 1,
-              name: 'Giovan',
-              biography: '',
-              creationDate: new Date('2022-09-08T19:31:18.758+00:00'),
-              dateOfLastModification: new Date('2022-09-08T19:31:18.758+00:00'),
-            },
-            {
-              id: 2,
-              name: 'Nino',
-              biography: '',
-              creationDate: new Date('2022-09-08T19:31:18.758+00:00'),
-              dateOfLastModification: new Date('2022-09-08T19:31:18.758+00:00'),
-            },
-          ],
-          creationDate: new Date('2022-09-08T19:41:43.354+00:00'),
-          dateOfLastModification: new Date('2022-09-08T19:41:43.354+00:00'),
-        },
-      },
-    ];
-  }
 }

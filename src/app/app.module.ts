@@ -43,9 +43,11 @@ import { UserService } from './user.service';
 import { CartService } from './cart.service';
 import { CollectionService } from './collection.service';
 import { ComicService } from './comic.service';
+import { SearchPageComponent } from './search-page/search-page.component';
+import { SessionService } from './session.service';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent, UserPageComponent, PurchasesPageComponent],
+  declarations: [AppComponent, LoginComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent, UserPageComponent, PurchasesPageComponent, SearchPageComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -71,7 +73,7 @@ import { ComicService } from './comic.service';
     MatDialogModule,
     MatPaginatorModule
   ],
-  providers: [UserService, CartService, CollectionService, ComicService],
+  providers: [UserService, CartService, CollectionService, ComicService, SessionService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

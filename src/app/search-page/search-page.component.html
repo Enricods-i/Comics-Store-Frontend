@@ -1,14 +1,3 @@
-<div *ngIf="author != undefined">
-  <div class="title">
-    <img
-      [src]="'http://localhost:8080/authors/cover/' + author.id"
-      alt="Image"
-    />
-    <h1>{{ author.name }}</h1>
-  </div>
-  <p>{{ author.biography }}</p>
-</div>
-
 <div class="paginator">
   <span>
     <button mat-icon-button [disabled]="currentPage==1" (click)="previousPage()">
@@ -21,6 +10,4 @@
   </span>
 </div>
 
-<div class="collections">
-  <app-collections-rendered [collections]="collections"></app-collections-rendered>
-</div>
+<app-collections-rendered [collections]="collections"></app-collections-rendered>

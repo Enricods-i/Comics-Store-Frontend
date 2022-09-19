@@ -1,15 +1,3 @@
-.paginator {
-  width: 800px;
-  margin: 10px auto;
-  display: flex;
-  justify-content: center;
-}
-
-.paginator input {
-  width: 10px;
-  border-style: none;
-}
-
 .container {
   width: 800px;
   margin: 20px auto;

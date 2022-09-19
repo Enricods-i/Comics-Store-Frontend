@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProblemCode } from '../common/ProblemCode';
 import { User } from '../model/User';
-import { UserSessionService } from '../user-session.service';
+import { SessionService } from '../session.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -21,13 +21,13 @@ export class UserPageComponent implements OnInit {
   constructor(
     private userService: UserService,
     private snackBar: MatSnackBar,
-    private userSessionService: UserSessionService
+    private sessionService: SessionService
   )
   { }
 
   ngOnInit(): void {
     //User updates
-    this.userSessionService.currentUser.subscribe(usr => this.user=usr);
+    this.sessionService.currentUser.subscribe(usr => this.user=usr);
   }
 
   modify(){
@@ -54,7 +54,7 @@ export class UserPageComponent implements OnInit {
         this.user=response;
         this.modifying = false;
         this.showMessage("Profilo utente aggiornato!");
-        this.userSessionService.updateUser(this.user);
+        this.sessionService.updateUser(this.user);
       },
       error: (problem: HttpErrorResponse) => {
         if(problem.error[0].code == ProblemCode.USER_ALREADY_EXISTS) this.showMessage("Esiste già un utente resistrato con questa e-mail");

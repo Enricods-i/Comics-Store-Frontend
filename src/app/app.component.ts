@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { Cart } from './model/Cart';
 import { CartContent } from './model/CartContent';
 import { User } from './model/User';
-import { UserSessionService } from './user-session.service';
+import { SessionService } from './session.service';
 
 @Component({
   selector: 'app-root',
@@ -16,14 +16,14 @@ import { UserSessionService } from './user-session.service';
 export class AppComponent implements OnInit {
   user?: User;
 
-  cart!: Cart;
+  cart?: Cart;
 
   innerHeight: any;
 
   constructor(
     public loginDialog: MatDialog,
     private cartService: CartService,
-    private userSessionService: UserSessionService,
+    private sessionService: SessionService,
     private router: Router
   ) {}
 
@@ -31,7 +31,9 @@ export class AppComponent implements OnInit {
     //CSS layout
     this.innerHeight = window.innerHeight;
     //User updates
-    this.userSessionService.currentUser.subscribe(usr => this.user=usr);
+    this.sessionService.currentUser.subscribe(usr => this.user = usr);
+    //Cart updates
+    this.sessionService.currentCart.subscribe(cart => this.cart = cart);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -42,22 +44,24 @@ export class AppComponent implements OnInit {
   openLoginDialog() {
     let dialogRef = this.loginDialog.open(LoginComponent);
     dialogRef.afterClosed().subscribe((usr) => {
-      this.userSessionService.updateUser(usr);
+      this.sessionService.updateUser(usr);
+      this.getCart();
     });
   }
 
-  //CART STUFF
-  /* getCart() {
+  logout(){
+    this.sessionService.updateUser(undefined);
+    this.sessionService.updateCart(undefined);
+  }
+
+  private getCart() {
+    if (this.user == undefined) return;
+
     this.cartService.get(this.user.id).subscribe({
       next: (response: any) => {
-        this.cart = structuredClone(response);
+        this.sessionService.updateCart(response);
       },
     });
   }
-
-  getCartContent(): CartContent[] {
-    if (this.cart !== undefined) return this.cart.content;
-    else return [];
-  } */
 
 }

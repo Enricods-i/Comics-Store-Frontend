@@ -27,7 +27,7 @@
         <tr class="row">
           <td>Autori:</td>
           <td>
-            <a href="#" *ngFor="let auth of comic.authors" class="author-link">
+            <a (click)="showAuthor(auth)" *ngFor="let auth of comic.authors" class="author-link">
               {{ auth.name }}
             </a>
           </td>
