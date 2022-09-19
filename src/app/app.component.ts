@@ -1,10 +1,12 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { CartService } from './cart.service';
 import { LoginComponent } from './login/login.component';
 import { Cart } from './model/Cart';
 import { CartContent } from './model/CartContent';
 import { User } from './model/User';
+import { UserSessionService } from './user-session.service';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +14,7 @@ import { User } from './model/User';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  private _user!: User;
-
-  get user(): User {
-    return this._user;
-  }
-
-  set user(u: User) {
-    this._user = structuredClone(u);
-    this.getCart();
-  }
+  user?: User;
 
   cart!: Cart;
 
@@ -29,11 +22,16 @@ export class AppComponent implements OnInit {
 
   constructor(
     public loginDialog: MatDialog,
-    private cartService: CartService
+    private cartService: CartService,
+    private userSessionService: UserSessionService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    //CSS layout
     this.innerHeight = window.innerHeight;
+    //User updates
+    this.userSessionService.currentUser.subscribe(usr => this.user=usr);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -44,11 +42,12 @@ export class AppComponent implements OnInit {
   openLoginDialog() {
     let dialogRef = this.loginDialog.open(LoginComponent);
     dialogRef.afterClosed().subscribe((usr) => {
-      this.user = usr;
+      this.userSessionService.updateUser(usr);
     });
   }
 
-  getCart() {
+  //CART STUFF
+  /* getCart() {
     this.cartService.get(this.user.id).subscribe({
       next: (response: any) => {
         this.cart = structuredClone(response);
@@ -59,5 +58,6 @@ export class AppComponent implements OnInit {
   getCartContent(): CartContent[] {
     if (this.cart !== undefined) return this.cart.content;
     else return [];
-  }
+  } */
+
 }

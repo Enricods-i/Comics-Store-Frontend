@@ -25,3 +25,7 @@ td {
 mat-form-field {
   bottom: -10px;
 }
+
+h2 {
+  text-align: center;
+}

@@ -1,4 +1,4 @@
-<mat-card *ngIf="user !== undefined">
+<mat-card *ngIf="user !== undefined; else userNotLoggedIn">
   <mat-card-title>Profilo</mat-card-title>
   <mat-card-content>
     <table *ngIf="!modifying">
@@ -33,18 +33,18 @@
     </table>
 
     <form (submit)="update()" id="updateForm" #updateForm="ngForm">
-      <table *ngIf="modifying">
+      <table *ngIf="modifying && newUser !== undefined">
         <tr>
           <td>Nome:</td>
           <td>
             <mat-form-field appearance="outline" color="accent">
               <input
-              matInput
-              required
-              minlength="2"
-              maxlength="20"
-              [(ngModel)]="newUser.firstName"
-              name="new-name"
+                matInput
+                required
+                minlength="2"
+                maxlength="20"
+                [(ngModel)]="newUser.firstName"
+                name="new-name"
               />
             </mat-form-field>
           </td>
@@ -54,12 +54,12 @@
           <td>
             <mat-form-field appearance="outline" color="accent">
               <input
-              matInput
-              required
-              minlength="2"
-              maxlength="20"
-              [(ngModel)]="newUser.lastName"
-              name="new-surname"
+                matInput
+                required
+                minlength="2"
+                maxlength="20"
+                [(ngModel)]="newUser.lastName"
+                name="new-surname"
               />
             </mat-form-field>
           </td>
@@ -86,13 +86,13 @@
           <td>
             <mat-form-field appearance="outline" color="accent">
               <input
-              matInput
-              tel
-              minlength="6"
-              maxlength="20"
-              [(ngModel)]="newUser.phoneNumber"
-              name="new-phoneNumber"
-            />
+                matInput
+                tel
+                minlength="6"
+                maxlength="20"
+                [(ngModel)]="newUser.phoneNumber"
+                name="new-phoneNumber"
+              />
             </mat-form-field>
           </td>
         </tr>
@@ -101,12 +101,12 @@
           <td>
             <mat-form-field appearance="outline" color="accent">
               <input
-              matInput
-              minlength="2"
-              maxlength="20"
-              [(ngModel)]="newUser.city"
-              name="new-city"
-            />
+                matInput
+                minlength="2"
+                maxlength="20"
+                [(ngModel)]="newUser.city"
+                name="new-city"
+              />
             </mat-form-field>
           </td>
         </tr>
@@ -118,14 +118,34 @@
     </form>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button *ngIf="!modifying" mat-button color="accent" (click)="modifying = true">
+    <button
+      *ngIf="!modifying"
+      mat-button
+      color="accent"
+      (click)="modify()"
+    >
       Modifica
     </button>
-    <button *ngIf="modifying" mat-button color="accent" (click)="resetNewUser()">
+    <button
+      *ngIf="modifying"
+      mat-button
+      color="accent"
+      (click)="resetNewUser()"
+    >
       Annulla
     </button>
-    <button *ngIf="modifying" type="submit" form="updateForm" mat-button color="accent">
+    <button
+      *ngIf="modifying"
+      type="submit"
+      form="updateForm"
+      mat-button
+      color="accent"
+    >
       Fatto
     </button>
   </mat-card-actions>
 </mat-card>
+
+<ng-template #userNotLoggedIn>
+  <h2>Effettua l'accesso prima!</h2>
+</ng-template>
