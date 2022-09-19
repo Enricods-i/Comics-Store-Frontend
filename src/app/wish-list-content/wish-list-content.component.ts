@@ -1,130 +1,101 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartService } from '../cart.service';
+import { ProblemCode } from '../common/ProblemCode';
+import { Cart } from '../model/Cart';
 import { Comic } from '../model/Comic';
+import { User } from '../model/User';
 import { WishList } from '../model/WishList';
+import { SessionService } from '../session.service';
+import { WishListService } from '../wish-list.service';
 
 @Component({
   selector: 'app-wish-list-content',
   templateUrl: './wish-list-content.component.html',
-  styleUrls: ['./wish-list-content.component.css']
+  styleUrls: ['./wish-list-content.component.css'],
 })
-export class WishListContentComponent implements OnInit {
+export class WishListContentComponent {
+  user?: User;
+  cart?: Cart;
 
-  private _wishList!: WishList;
+  wishList?: WishList;
 
-  get wishList() { return this._wishList; }
+  currentPage: number = 1;
+  comics: Comic[] = [];
 
-  @Input()
-  set wishList(w: WishList){
-    this._wishList=w;
+  constructor(
+    private wishListService: WishListService,
+    private sessionService: SessionService,
+    private snackBar: MatSnackBar,
+    private cartService: CartService
+  ) {
+    this.sessionService.currentUser.subscribe((user) => (this.user = user));
+    this.sessionService.currentCart.subscribe((cart) => (this.cart = cart));
+    this.wishList = history.state.wishList;
     this.getComics();
   }
 
-  comics!: Comic[];
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.mockData();
+  showMessage(msg: string) {
+    this.snackBar.open(msg, undefined, { duration: 5000 });
   }
 
-  increase(s: string): string{
-    return String(parseInt(s)+1);
+  previousPage() {
+    this.currentPage--;
+    this.getComics();
   }
 
-  decrease(s: string): string{
-    return String(parseInt(s)-1);
+  nextPage() {
+    this.currentPage++;
+    this.getComics();
   }
 
-  getComics(){
-    //invoke rest call to get comics belong to the wishList
+  getComics() {
+    if (this.wishList == undefined || this.user == undefined)
+      throw new Error('Errore imprevisto');
+    this.wishListService
+      .getContent(this.wishList.id, this.user.id, this.currentPage - 1)
+      .subscribe({
+        next: (response: Comic[]) => {
+          this.comics = response;
+        },
+      });
   }
 
-  mockData() {
-    this._wishList = {
-      id: 0,
-      name: "Prova",
-      "creationDate": new Date("2022-09-08T19:31:18.758+00:00")
+  addToCart(c: Comic, q: number) {
+    if (this.user == undefined) {
+      throw new Error('Errore interno');
     }
-    this.comics = [
-      {
-        "id": 1,
-        "collection": {
-          "name": "L'attacco dei Giganti",
-          "id": 1,
-          "price": 7.19,
-          "yearOfRelease": 2019,
-          "formatAndBinding": "Brossurato",
-          "color": false,
-          "description": "Ecco la descrizione",
-          "categories": [],
-          "creationDate": new Date("2022-09-08T19:31:18.758+00:00"),
-          "dateOfLastModification": new Date("2022-09-08T19:31:18.758+00:00")
-        },
-        "number": 1,
-        "quantity": 17,
-        "pages": 55,
-        "isbn": "565582492-2",
-        "publicationDate": new Date("2022-05-11"),
-        "description": "Guarda questa è una descrizione molto lunga di questo fumetto che racconta di un vecchio al mare. I vecchi sono sempre al mare.",
-        "authors": [
-          {
-            id: 1,
-            name: "Giovan",
-            biography: "",
-            "creationDate": new Date("2022-09-08T19:31:18.758+00:00"),
-            "dateOfLastModification": new Date("2022-09-08T19:31:18.758+00:00")
-          },
-          {
-            id: 2,
-            name: "Nino",
-            biography: "",
-            "creationDate": new Date("2022-09-08T19:31:18.758+00:00"),
-            "dateOfLastModification": new Date("2022-09-08T19:31:18.758+00:00")
-          }
-        ],
-        "creationDate": new Date("2022-09-08T19:41:43.354+00:00"),
-        "dateOfLastModification": new Date("2022-09-08T19:41:43.354+00:00")
+    this.cartService.addComic(this.user.id, c.id, q).subscribe({
+      next: () => {
+        if (this.cart == undefined) return;
+        this.cart.content.push({
+          quantity: q,
+          comic: c,
+        });
+        this.cart.size += q;
       },
-      {
-        "id": 2,
-        "collection": {
-          "name": "L'attacco dei Giganti",
-          "id": 1,
-          "price": 7.19,
-          "yearOfRelease": 2019,
-          "formatAndBinding": "Brossurato",
-          "color": false,
-          "description": "Ecco la descrizione",
-          "categories": [],
-          "creationDate": new Date("2022-09-08T19:31:18.758+00:00"),
-          "dateOfLastModification": new Date("2022-09-08T19:31:18.758+00:00")
+      error: (problem: HttpErrorResponse) => {
+        if (problem.error[0].code == ProblemCode.COMIC_QUANTITY_UNAVAIABLE)
+          this.showMessage('Quantità non disponibile');
+        else if (problem.error[0].code == ProblemCode.COMIC_ALREADY_IN_CART) {
+          this.showMessage('Fumetto già nel carrello');
+        } else console.error(problem.error[0]);
+      },
+    });
+  }
+
+  deleteComic(comic: Comic) {
+    if (this.user == undefined || this.wishList == undefined)
+      throw new Error('Errore imprevisto');
+    this.wishListService
+      .deleteComic(this.wishList.id, this.user.id, comic.id)
+      .subscribe({
+        next: () => {
+          let index = this.comics.indexOf(comic);
+          this.comics.splice(index, 1);
         },
-        "number": 2,
-        "quantity": 0,
-        "pages": 55,
-        "isbn": "565582492-2",
-        "publicationDate": new Date("2022-05-11"),
-        "description": "Guarda questa è una descrizione molto lunga di questo fumetto che racconta di un vecchio al mare. I vecchi sono sempre al mare.",
-        "authors": [
-          {
-            id: 1,
-            name: "Giovan",
-            biography: "",
-            "creationDate": new Date("2022-09-08T19:31:18.758+00:00"),
-            "dateOfLastModification": new Date("2022-09-08T19:31:18.758+00:00")
-          },
-          {
-            id: 2,
-            name: "Nino",
-            biography: "",
-            "creationDate": new Date("2022-09-08T19:31:18.758+00:00"),
-            "dateOfLastModification": new Date("2022-09-08T19:31:18.758+00:00")
-          }
-        ],
-        "creationDate": new Date("2022-09-08T19:41:43.354+00:00"),
-        "dateOfLastModification": new Date("2022-09-08T19:41:43.354+00:00")
-      }
-    ];
+      });
   }
 
 }

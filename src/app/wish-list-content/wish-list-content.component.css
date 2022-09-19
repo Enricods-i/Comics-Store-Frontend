@@ -3,6 +3,18 @@
   text-align: center;
 }
 
+.paginator {
+  width: 800px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.paginator input {
+  width: 10px;
+  border-style: none;
+}
+
 .comic-frame {
   max-width: 800px;
   margin: 20px auto;
@@ -33,19 +45,28 @@
 }
 
 .quantity {
-  max-width: 100px;
+  max-width: min-content;
   display: flex;
   background-color: rgb(255, 82, 82);
   border-radius: 20px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
-.quantity span {
-  color: white;
-  align-self: center;
+.quantity input {
+  width: 15px;
+  background-color: transparent;
+  border: none;
+  outline: none;
   text-align: center;
-  font-size: medium;
+  color: white;
+  font-size: large;
   font-weight: bold;
+}
+
+.selector-disabled {
+  box-shadow: none;
+  background-color: transparent;
+  color: #bfbfbf !important;
 }
 
 .selector-disabled {

@@ -1,62 +1,90 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { WishList } from '../model/WishList';
 import { MatDialog } from '@angular/material/dialog';
 import { InputDialogComponent } from '../input-dialog/input-dialog.component';
+import { User } from '../model/User';
+import { SessionService } from '../session.service';
+import { WishListService } from '../wish-list.service';
+import { Router } from '@angular/router';
+import { Comic } from '../model/Comic';
 
 @Component({
   selector: 'app-wish-lists-page',
   templateUrl: './wish-lists-page.component.html',
-  styleUrls: ['./wish-lists-page.component.css']
+  styleUrls: ['./wish-lists-page.component.css'],
 })
-export class WishListsPageComponent implements OnInit {
+export class WishListsPageComponent {
 
-  private _userId!: number;
+  user?: User;
 
-  @Input()
-  set userId(id: number){
-    this._userId=id;
+  wishLists: WishList[] = [];
+
+  constructor(
+    public dialog: MatDialog,
+    private sessionService: SessionService,
+    private wishListService: WishListService,
+    private router: Router
+  ) {
+    this.sessionService.currentUser.subscribe((user) => (this.user = user));
+    this.getLists();
   }
 
-  wishLists!: WishList[];
-
-  constructor(public dialog: MatDialog) { }
-
-  ngOnInit(): void {
-    this.mockData();
+  showListContent(list: WishList) {
+    this.router.navigateByUrl('wish-list/content', {
+      state: { wishList: list }
+    });
   }
 
-  getLists(){
-    //invoke rest call to get lists belong to the user with userId
-  }
-
-  openDialog(tMsg: string, fName: string){
-    let dialogRef = this.dialog.open(InputDialogComponent, {data: {titleMessage: tMsg, fieldName: fName}});
-
-    dialogRef.afterClosed().subscribe(
-      result => {
-        console.log(result);
-      }
-    )
-  }
-
-  mockData(){
-    this.wishLists = [
-      {
-        id: 0,
-        name: "Prova",
-        creationDate: new Date("2022-09-08T19:31:18.758+00:00")
+  getLists() {
+    if (this.user == undefined) throw new Error('Errore imprevisto');
+    this.wishListService.getByUser(this.user.id).subscribe({
+      next: (response: WishList[]) => {
+        this.wishLists = response;
       },
-      {
-        id: 1,
-        name: "Regali",
-        creationDate: new Date("2022-09-08T19:31:18.758+00:00")
+    });
+  }
+
+  createList() {
+    let dialogRef = this.dialog.open(InputDialogComponent, {
+      data: { titleMessage: 'Nuova lista desideri', fieldName: 'Nome' },
+    });
+    dialogRef.afterClosed().subscribe((name) => {
+      if (this.user == undefined) throw new Error('Errore imprevisto');
+      this.wishListService.create(this.user.id, name).subscribe({
+        next: (w: WishList) => {
+          this.wishLists.push(w);
+        },
+      });
+    });
+  }
+
+  renameList(list: WishList) {
+    let dialogRef = this.dialog.open(InputDialogComponent, {
+      data: {
+        titleMessage: 'Rinomina "' + list.name + '"',
+        fieldName: 'Nuovo nome',
       },
-      {
-        id: 2,
-        name: "Privata",
-        creationDate: new Date("2022-09-08T19:31:18.758+00:00")
-      }
-    ]
+    });
+    dialogRef.afterClosed().subscribe((newName) => {
+      if (this.user == undefined) throw new Error('Errore imprevisto');
+      this.wishListService
+        .changeName(this.user.id, list.id, newName)
+        .subscribe({
+          next: () => {
+            list.name = newName;
+          },
+        });
+    });
+  }
+
+  deleteList(list: WishList) {
+    if (this.user == undefined) throw new Error('Errore imprevisto');
+    this.wishListService.delete(this.user.id, list.id).subscribe({
+      next: () => {
+        let index = this.wishLists.indexOf(list);
+        this.wishLists.splice(index, 1);
+      },
+    });
   }
 
 }

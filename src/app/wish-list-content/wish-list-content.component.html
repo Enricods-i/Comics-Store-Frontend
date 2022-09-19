@@ -1,47 +1,105 @@
-<div class="title">
-  <h1>{{wishList.name}}</h1>
-  <h4>Lista desideri creata il {{wishList.creationDate | date: "dd//MM/yyyy"}}</h4>
-</div>
+<div *ngIf="user != undefined; else notLoggedIn">
+  <div *ngIf="wishList != undefined" class="title">
+    <h1>{{ wishList.name }}</h1>
+    <h4>
+      Lista desideri creata il {{ wishList.creationDate | date: "dd//MM/yyyy" }}
+    </h4>
+  </div>
 
-<div class="comic-frame" *ngFor="let cmc of comics">
+  <div class="paginator">
+    <span>
+      <button
+        mat-icon-button
+        [disabled]="currentPage == 1"
+        (click)="previousPage()"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <span>{{ currentPage }}</span>
+      <button
+        mat-icon-button
+        [disabled]="comics.length == 0"
+        (click)="nextPage()"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </span>
+  </div>
 
-    <app-comic-rendered [comic]="cmc"></app-comic-rendered>
+  <div *ngIf="comics.length != 0; else noContent">
+    <div class="comic-frame" *ngFor="let cmc of comics">
+      <app-comic-rendered [comic]="cmc"></app-comic-rendered>
 
-    <div class="button-space">
-      <div class="button-container">
-
-        <div [ngClass]="cmc.quantity==0 ? 'selector-disabled' : ''" class="quantity">
-          <button
-            mat-icon-button
-            [disabled]="cmc.quantity==0"
-            (click)="comicQuantity.innerText!='1' ? comicQuantity.innerText=decrease(comicQuantity.innerText) : comicQuantity.innerText"
-            class="action-button"
+      <div class="button-space">
+        <div class="button-container">
+          <div
+            [ngClass]="
+              cmc.quantity == 0 || user == undefined ? 'selector-disabled' : ''
+            "
+            class="quantity"
           >
-            <mat-icon>remove</mat-icon>
-          </button>
-          <span [ngClass]="cmc.quantity==0 ? 'selector-disabled' : ''" #comicQuantity>1</span>
-          <button
-            mat-icon-button
-            [disabled]="cmc.quantity==0"
-            (click)="comicQuantity.innerText!='9' ? comicQuantity.innerText=increase(comicQuantity.innerText) : comicQuantity.innerText"
-            class="action-button"
-          >
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
+            <button
+              mat-icon-button
+              [disabled]="
+                cmc.quantity == 0 || qty.valueAsNumber == 1 || user == undefined
+              "
+              (click)="qty.valueAsNumber = qty.valueAsNumber - 1"
+              class="action-button"
+            >
+              <mat-icon>remove</mat-icon>
+            </button>
+            <input
+              type="number"
+              value="1"
+              [ngClass]="
+                cmc.quantity == 0 || user == undefined
+                  ? 'selector-disabled'
+                  : ''
+              "
+              readonly
+              #qty
+            />
+            <button
+              mat-icon-button
+              [disabled]="
+                cmc.quantity == 0 ||
+                qty.valueAsNumber == cmc.quantity ||
+                qty.valueAsNumber == 9 ||
+                user == undefined
+              "
+              (click)="qty.valueAsNumber = qty.valueAsNumber + 1"
+              class="action-button"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
 
-        <div>
-          <button mat-mini-fab [disabled]="cmc.quantity == 0" class="action-button">
-            <mat-icon>add_shopping_cart</mat-icon>
-          </button>
-        </div>
+          <div>
+            <button
+              mat-mini-fab
+              [disabled]="cmc.quantity == 0 || user == undefined"
+              (click)="addToCart(cmc, qty.valueAsNumber)"
+              class="action-button"
+            >
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+          </div>
 
-        <div>
-          <button mat-mini-fab class="action-button">
-            <mat-icon>delete_outline</mat-icon>
-          </button>
+          <div>
+            <button mat-mini-fab class="action-button" (click)="deleteComic(cmc)">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </div>
         </div>
-
       </div>
     </div>
   </div>
+</div>
+
+<ng-template #noContent>
+  <h2 style="text-align: center">Qui non c'è nulla</h2>
+</ng-template>
+
+<ng-template #notLoggedIn>
+  <h2 style="text-align: center">Effettua l'accesso prima!</h2>
+</ng-template>

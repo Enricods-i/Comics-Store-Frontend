@@ -25,6 +25,8 @@
 
   font-family: "Acme";
   font-size: large;
+
+  color: rgb(255, 82, 82);
 }
 
 .action-button {

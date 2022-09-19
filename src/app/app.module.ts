@@ -43,6 +43,7 @@ import { ComicService } from './comic.service';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { SessionService } from './session.service';
 import { PurchaseService } from './purchase.service';
+import { WishListService } from './wish-list.service';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { PurchaseService } from './purchase.service';
     ComicService,
     SessionService,
     PurchaseService,
+    WishListService
   ],
   bootstrap: [AppComponent],
 })

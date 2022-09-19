@@ -10,7 +10,7 @@
       *ngIf="user != undefined && cart != undefined; else notLoggedIn"
       class="controls side-element"
     >
-      <button mat-button color="accent">Liste Desideri</button>
+      <button mat-button color="accent" [routerLink]="'wish-list'">Liste Desideri</button>
       <button mat-mini-fab color="accent" [routerLink]="'cart'">
         <mat-icon
           [matBadge]="cart.size"

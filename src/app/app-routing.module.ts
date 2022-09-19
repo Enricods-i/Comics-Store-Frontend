@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'catalog/author', component: AuthorPageComponent },
   { path: 'catalog/category', component: CategoryPageComponent },
   { path: 'wish-list', component: WishListsPageComponent },
-  { path: 'whish-list/content', component: WishListContentComponent }
+  { path: 'wish-list/content', component: WishListContentComponent }
 ];
 
 @NgModule({
