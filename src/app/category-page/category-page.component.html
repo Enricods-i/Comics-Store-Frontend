@@ -1,6 +1,19 @@
-<div class="title">
+<div *ngIf="category != undefined" class="title">
   <h1>{{category.name}}</h1>
 </div>
+
+<div class="paginator">
+  <span>
+    <button mat-icon-button [disabled]="currentPage==1" (click)="previousPage()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <span>{{currentPage}}</span>
+    <button mat-icon-button [disabled]="collections.length==0" (click)="nextPage()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </span>
+</div>
+
 <div class="collections">
-  <app-collections-rendered></app-collections-rendered>
+  <app-collections-rendered [collections]="collections"></app-collections-rendered>
 </div>

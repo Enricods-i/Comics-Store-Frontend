@@ -27,12 +27,28 @@
   text-align: center;
 }
 
-mat-chip {
+button {
+  margin: 5px;
+
+  height: 30px;
+
+  background-color: white;
+
   border: 2px solid rgb(255, 82, 82);
+  border-radius: 15px;
 }
 
-mat-chip:hover {
+button:hover {
   cursor: pointer;
+  background-color: rgb(252, 162, 162);
+}
+
+button:active {
+  background-color: rgb(245, 120, 120);
+}
+
+button span {
+  margin: 0px 3px;
 }
 
 .no-result {

@@ -36,7 +36,6 @@ export class AuthorPageComponent {
 
   private getCollections(){
     if (this.author == undefined) return;
-    console.log(this.author.id, this.currentPage-1);
     this.collectionService.getByAuthor(this.author.id,this.currentPage-1).subscribe({
       next: (response: Collection[]) => {
         this.collections = response;

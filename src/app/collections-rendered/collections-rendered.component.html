@@ -10,11 +10,11 @@
     <p class="title">
       <strong>{{ col.name }}</strong>
     </p>
-    <mat-chip-list>
-      <mat-chip *ngFor="let cat of col.categories" selected>
+    <button *ngFor="let cat of col.categories" (click)="showCategory(cat)">
+      <span>
         {{ cat.name }}
-      </mat-chip>
-    </mat-chip-list>
+      </span>
+    </button>
   </div>
 </div>
 
