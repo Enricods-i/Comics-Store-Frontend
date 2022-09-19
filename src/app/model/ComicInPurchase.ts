@@ -5,6 +5,6 @@ export interface ComicInPurchase {
   id: number;
   comic: Comic;
   quantity: number;
-  price: number;
-  discount?: Discount;
+  comicPrice: number;
+  discountsApplied: Discount[];
 }

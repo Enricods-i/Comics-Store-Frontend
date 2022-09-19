@@ -1,24 +1,61 @@
-<div *ngIf="purchases!==undefined">
-  <mat-card *ngFor="let purchase of purchases">
-    <mat-card-content>
-      <table>
-        <tr>
-          <th>Fumetto</th>
-          <th>Prezzo</th>
-          <th>Sconto</th>
-          <th>Quantità</th>
-        </tr>
-        <tr *ngFor="let cip of purchase.content">
-          <td>{{cip.comic.collection.name}} {{cip.comic.number}}</td>
-          <td>€{{cip.price}}</td>
-          <td>{{cip.discount ? cip.discount.percentage+'%' : ''}}</td>
-          <td>{{cip.quantity}}</td>
-        </tr>
-      </table>
-    </mat-card-content>
-    <div class="footer">
-      <span><strong>Effettuato il {{purchase.creationDate | date: "dd/MM/yyyy, H:mm"}}</strong></span>
-      <span><strong>Totale: €{{purchase.total}}</strong></span>
+<div *ngIf="user!= undefined; else notLoggedIn">
+  <div *ngIf="purchases.length != 0; else noPurchases">
+    <div class="paginator">
+      <span>
+        <button
+          mat-icon-button
+          [disabled]="currentPage == 1"
+          (click)="previousPage()"
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <span>{{ currentPage }}</span>
+        <button
+          mat-icon-button
+          [disabled]="purchases.length == 0"
+          (click)="nextPage()"
+        >
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </span>
     </div>
-  </mat-card>
+
+    <mat-card *ngFor="let purchase of purchases">
+      <mat-card-content>
+        <table>
+          <tr>
+            <th>Fumetto</th>
+            <th>Prezzo</th>
+            <th>Sconto</th>
+            <th>Quantità</th>
+          </tr>
+          <tr *ngFor="let cip of purchase.purchasedComics">
+            <td>{{ cip.comic.collection.name }} {{ cip.comic.number }}</td>
+            <td>€{{ cip.comicPrice }}</td>
+            <td>{{ cip.discountsApplied[0] ? cip.discountsApplied[0].percentage + "%" : "" }}</td>
+            <td>{{ cip.quantity }}</td>
+          </tr>
+        </table>
+      </mat-card-content>
+      <div class="footer">
+        <span
+          ><strong
+            >Effettuato il
+            {{ purchase.creationDate | date: "dd/MM/yyyy, H:mm" }}</strong
+          ></span
+        >
+        <span
+          ><strong>Totale: €{{ purchase.total }}</strong></span
+        >
+      </div>
+    </mat-card>
+  </div>
 </div>
+
+<ng-template #noPurchases>
+  <h2>Non hai effettuato nessun acquisto</h2>
+</ng-template>
+
+<ng-template #notLoggedIn>
+  <h2>Effettua l'accesso prima!</h2>
+</ng-template>

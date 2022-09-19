@@ -15,16 +15,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatRippleModule} from '@angular/material/core';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { LoginComponent } from './login/login.component';
 import { CollectionsRenderedComponent } from './collections-rendered/collections-rendered.component';
@@ -45,9 +42,26 @@ import { CollectionService } from './collection.service';
 import { ComicService } from './comic.service';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { SessionService } from './session.service';
+import { PurchaseService } from './purchase.service';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SearchBarComponent, CollectionsRenderedComponent, ComicRenderedComponent, CatalogPageComponent, CartPageComponent, AuthorPageComponent, CategoryPageComponent, WishListContentComponent, WishListsPageComponent, InputDialogComponent, UserPageComponent, PurchasesPageComponent, SearchPageComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    SearchBarComponent,
+    CollectionsRenderedComponent,
+    ComicRenderedComponent,
+    CatalogPageComponent,
+    CartPageComponent,
+    AuthorPageComponent,
+    CategoryPageComponent,
+    WishListContentComponent,
+    WishListsPageComponent,
+    InputDialogComponent,
+    UserPageComponent,
+    PurchasesPageComponent,
+    SearchPageComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -66,14 +80,18 @@ import { SessionService } from './session.service';
     MatGridListModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatChipsModule,
     MatRippleModule,
-    MatExpansionModule,
     MatSnackBarModule,
-    MatDialogModule,
-    MatPaginatorModule
+    MatDialogModule
   ],
-  providers: [UserService, CartService, CollectionService, ComicService, SessionService],
+  providers: [
+    UserService,
+    CartService,
+    CollectionService,
+    ComicService,
+    SessionService,
+    PurchaseService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

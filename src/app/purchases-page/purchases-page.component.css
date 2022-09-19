@@ -3,6 +3,18 @@ mat-card {
   margin: 40px auto;
 }
 
+.paginator {
+  width: 800px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.paginator input {
+  width: 10px;
+  border-style: none;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -24,4 +36,8 @@ td, th {
   margin: 40px auto 10px auto;
   display: flex;
   justify-content: space-between;
+}
+
+h2 {
+  text-align: center;
 }

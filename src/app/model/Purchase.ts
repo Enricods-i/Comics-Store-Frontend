@@ -5,6 +5,6 @@ export interface Purchase {
   id: number;
   user: User;
   total: number;
-  content: ComicInPurchase[];
+  purchasedComics: ComicInPurchase[];
   creationDate: Date;
 }
