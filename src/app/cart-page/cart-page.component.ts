@@ -6,6 +6,7 @@ import { ProblemCode } from '../common/ProblemCode';
 import { Cart } from '../model/Cart';
 import { CartContent } from '../model/CartContent';
 import { User } from '../model/User';
+import { PurchaseService } from '../purchase.service';
 import { SessionService } from '../session.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class CartPageComponent {
   constructor(
     private cartService: CartService,
     private snackBar: MatSnackBar,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private purchaseService: PurchaseService
   )
   {
     this.sessionService.currentUser.subscribe(user => this.user = user);
@@ -84,6 +86,27 @@ export class CartPageComponent {
         let index = this.cart.content.indexOf(cc);
         this.cart.content.splice(index, 1);
         this.cart.size -= cc.quantity;
+      }
+    });
+  }
+
+  buy(){
+    if (this.user == undefined){
+      this.showMessage("Errore interno.");
+      return;
+    }
+    this.purchaseService.create(this.user.id).subscribe({
+      next: () => {
+        if (this.cart == undefined ){
+          this.showMessage("Errore interno.");
+          return;
+        }
+        this.cart.content = [];
+        this.cart.size = 0;
+      },
+      error: (problem: HttpErrorResponse) => {
+        if(problem.error[0].code == ProblemCode.COMIC_QUANTITY_UNAVAIABLE) this.showMessage("Quantià non disponibile!");
+        else console.error(problem.error[0]);
       }
     });
   }

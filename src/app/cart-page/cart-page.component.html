@@ -5,6 +5,7 @@
       mat-raised-button
       color="accent"
       [disabled]="cart.content.length == 0"
+      (click)="buy()"
       class="action-button pay-button"
     >
       Acquista
@@ -66,6 +67,7 @@
       mat-raised-button
       color="accent"
       [disabled]="cart.content.length == 0"
+      (click)="buy()"
       class="action-button pay-button"
     >
       Acquista
