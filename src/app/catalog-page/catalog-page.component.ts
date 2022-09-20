@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AddToListDialogComponent } from '../add-to-list-dialog/add-to-list-dialog.component';
 import { CartService } from '../cart.service';
 import { ComicService } from '../comic.service';
 import { ProblemCode } from '../common/ProblemCode';
@@ -29,7 +31,8 @@ export class CatalogPageComponent {
     private comicService: ComicService,
     private sessionService: SessionService,
     private cartService: CartService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private addToListDialog: MatDialog
   )
   {
     this.sessionService.currentUser.subscribe(user => this.user = user);
@@ -85,6 +88,12 @@ export class CatalogPageComponent {
         }
         else console.error(problem.error[0]);
       }
+    });
+  }
+
+  addToList(c: Comic){
+    this.addToListDialog.open(AddToListDialogComponent, {
+      data: { comic: c }
     });
   }
 

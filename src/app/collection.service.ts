@@ -13,6 +13,12 @@ export class CollectionService {
 
   constructor(private http: HttpClient) { }
 
+  getRecent(): Observable<Collection[]> {
+    return this.http.get<Collection[]>(
+      this.BASE_URL + '/v/news'
+    );
+  }
+
   getByName(name: string, pageNumber: number = 0): Observable<Collection[]> {
     return this.http.get<Collection[]>(
       this.BASE_URL + '/v/byName?name=' + name +
@@ -35,31 +41,37 @@ export class CollectionService {
   }
 
   advancedSearch(name: string | null, categoryName: string | null, authorName: string | null, pageNumber: number = 0): Observable<Collection[]> {
-    let url: string = this.BASE_URL + '/v/search?';
+    let url: string = this.BASE_URL + '/v/search';
     let first: boolean = true;
     if(name!=null){
       if(first){
-        url.concat('?');
+        url = url.concat('?');
         first = false;
       }
-      else url.concat('&');
-      url.concat('name=', name);
+      else {
+        url = url.concat('&');
+      }
+      url = url.concat('name=', name);
     }
     if(categoryName!=null){
       if(first){
-        url.concat('?');
+        url = url = url.concat('?');
         first = false;
       }
-      else url.concat('&');
-      url.concat('ctgr=',categoryName);
+      else {
+        url = url.concat('&');
+      }
+      url = url.concat('ctgr=',categoryName);
     }
     if(authorName!=null){
       if(first){
-        url.concat('?');
+        url = url.concat('?');
         first = false;
       }
-      else url.concat('&');
-      url.concat('auth=',authorName);
+      else {
+        url = url.concat('&');
+      }
+      url = url.concat('auth=',authorName);
     }
     return this.http.get<Collection[]>(url + '&pageNumber=' +pageNumber);
   }

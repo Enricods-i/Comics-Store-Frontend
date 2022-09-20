@@ -1,10 +1,8 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { CartService } from './cart.service';
 import { LoginComponent } from './login/login.component';
 import { Cart } from './model/Cart';
-import { CartContent } from './model/CartContent';
 import { User } from './model/User';
 import { SessionService } from './session.service';
 
@@ -23,8 +21,7 @@ export class AppComponent implements OnInit {
   constructor(
     public loginDialog: MatDialog,
     private cartService: CartService,
-    private sessionService: SessionService,
-    private router: Router
+    private sessionService: SessionService
   ) {}
 
   ngOnInit(): void {

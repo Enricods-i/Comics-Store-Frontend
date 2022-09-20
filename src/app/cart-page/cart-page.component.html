@@ -48,9 +48,14 @@
           </div>
 
           <div>
-            <button mat-mini-fab class="action-button">
-              <mat-icon>favorite_border</mat-icon>
-            </button>
+            <button
+            mat-mini-fab
+            [disabled]="user == undefined"
+            (click)="addToList(item.comic)"
+            class="action-button"
+          >
+            <mat-icon>favorite_border</mat-icon>
+          </button>
           </div>
         </div>
       </div>

@@ -22,6 +22,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatListModule } from '@angular/material/list';
 
 import { LoginComponent } from './login/login.component';
 import { CollectionsRenderedComponent } from './collections-rendered/collections-rendered.component';
@@ -44,6 +45,8 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import { SessionService } from './session.service';
 import { PurchaseService } from './purchase.service';
 import { WishListService } from './wish-list.service';
+import { AddToListDialogComponent } from './add-to-list-dialog/add-to-list-dialog.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,8 @@ import { WishListService } from './wish-list.service';
     UserPageComponent,
     PurchasesPageComponent,
     SearchPageComponent,
+    AddToListDialogComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +88,8 @@ import { WishListService } from './wish-list.service';
     MatNativeDateModule,
     MatRippleModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatListModule,
   ],
   providers: [
     UserService,
@@ -92,7 +98,7 @@ import { WishListService } from './wish-list.service';
     ComicService,
     SessionService,
     PurchaseService,
-    WishListService
+    WishListService,
   ],
   bootstrap: [AppComponent],
 })

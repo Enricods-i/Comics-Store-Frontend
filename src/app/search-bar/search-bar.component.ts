@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { CollectionService } from '../collection.service';
-import { Collection } from '../model/Collection';
 import { QueryStructure } from '../model/QueryStructure';
 
 @Component({
@@ -22,7 +20,6 @@ export class SearchBarComponent {
 
   constructor(
     private _snackBar: MatSnackBar,
-    private collectionService: CollectionService,
     private router: Router
   ) {}
 
@@ -74,6 +71,7 @@ export class SearchBarComponent {
       });
       return;
     }
+    console.log(this.query);
     this.router.navigateByUrl('catalog', { state: { query: this.query } });
   }
 

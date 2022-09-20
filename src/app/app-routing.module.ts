@@ -4,6 +4,7 @@ import { AuthorPageComponent } from './author-page/author-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { HomeComponent } from './home/home.component';
 import { PurchasesPageComponent } from './purchases-page/purchases-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
@@ -11,7 +12,7 @@ import { WishListContentComponent } from './wish-list-content/wish-list-content.
 import { WishListsPageComponent } from './wish-lists-page/wish-lists-page.component';
 
 const routes: Routes = [
-  { path: '', component: UserPageComponent },
+  { path: '', component: HomeComponent },
   { path: 'user', component: UserPageComponent },
   { path: 'user/purchases', component: PurchasesPageComponent },
   { path: 'cart', component: CartPageComponent },
