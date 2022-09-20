@@ -6,89 +6,99 @@
     </h4>
   </div>
 
-  <div class="paginator">
-    <span>
-      <button
-        mat-icon-button
-        [disabled]="currentPage == 1"
-        (click)="previousPage()"
-      >
-        <mat-icon>chevron_left</mat-icon>
-      </button>
-      <span>{{ currentPage }}</span>
-      <button
-        mat-icon-button
-        [disabled]="comics.length == 0"
-        (click)="nextPage()"
-      >
-        <mat-icon>chevron_right</mat-icon>
-      </button>
-    </span>
-  </div>
+  <div *ngIf="wishList != undefined; else noList">
+    <div class="paginator">
+      <span>
+        <button
+          mat-icon-button
+          [disabled]="currentPage == 1"
+          (click)="previousPage()"
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <span>{{ currentPage }}</span>
+        <button
+          mat-icon-button
+          [disabled]="comics.length == 0"
+          (click)="nextPage()"
+        >
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </span>
+    </div>
 
-  <div *ngIf="comics.length != 0; else noContent">
-    <div class="comic-frame" *ngFor="let cmc of comics">
-      <app-comic-rendered [comic]="cmc"></app-comic-rendered>
+    <div *ngIf="comics.length != 0; else noContent">
+      <div class="comic-frame" *ngFor="let cmc of comics">
+        <app-comic-rendered [comic]="cmc"></app-comic-rendered>
 
-      <div class="button-space">
-        <div class="button-container">
-          <div
-            [ngClass]="
-              cmc.quantity == 0 || user == undefined ? 'selector-disabled' : ''
-            "
-            class="quantity"
-          >
-            <button
-              mat-icon-button
-              [disabled]="
-                cmc.quantity == 0 || qty.valueAsNumber == 1 || user == undefined
-              "
-              (click)="qty.valueAsNumber = qty.valueAsNumber - 1"
-              class="action-button"
-            >
-              <mat-icon>remove</mat-icon>
-            </button>
-            <input
-              type="number"
-              value="1"
+        <div class="button-space">
+          <div class="button-container">
+            <div
               [ngClass]="
                 cmc.quantity == 0 || user == undefined
                   ? 'selector-disabled'
                   : ''
               "
-              readonly
-              #qty
-            />
-            <button
-              mat-icon-button
-              [disabled]="
-                cmc.quantity == 0 ||
-                qty.valueAsNumber == cmc.quantity ||
-                qty.valueAsNumber == 9 ||
-                user == undefined
-              "
-              (click)="qty.valueAsNumber = qty.valueAsNumber + 1"
-              class="action-button"
+              class="quantity"
             >
-              <mat-icon>add</mat-icon>
-            </button>
-          </div>
+              <button
+                mat-icon-button
+                [disabled]="
+                  cmc.quantity == 0 ||
+                  qty.valueAsNumber == 1 ||
+                  user == undefined
+                "
+                (click)="qty.valueAsNumber = qty.valueAsNumber - 1"
+                class="action-button"
+              >
+                <mat-icon>remove</mat-icon>
+              </button>
+              <input
+                type="number"
+                value="1"
+                [ngClass]="
+                  cmc.quantity == 0 || user == undefined
+                    ? 'selector-disabled'
+                    : ''
+                "
+                readonly
+                #qty
+              />
+              <button
+                mat-icon-button
+                [disabled]="
+                  cmc.quantity == 0 ||
+                  qty.valueAsNumber == cmc.quantity ||
+                  qty.valueAsNumber == 9 ||
+                  user == undefined
+                "
+                (click)="qty.valueAsNumber = qty.valueAsNumber + 1"
+                class="action-button"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
 
-          <div>
-            <button
-              mat-mini-fab
-              [disabled]="cmc.quantity == 0 || user == undefined"
-              (click)="addToCart(cmc, qty.valueAsNumber)"
-              class="action-button"
-            >
-              <mat-icon>add_shopping_cart</mat-icon>
-            </button>
-          </div>
+            <div>
+              <button
+                mat-mini-fab
+                [disabled]="cmc.quantity == 0 || user == undefined"
+                (click)="addToCart(cmc, qty.valueAsNumber)"
+                class="action-button"
+              >
+                <mat-icon>add_shopping_cart</mat-icon>
+              </button>
+            </div>
 
-          <div>
-            <button mat-mini-fab class="action-button" (click)="deleteComic(cmc)">
-              <mat-icon>delete_outline</mat-icon>
-            </button>
+            <div>
+              <button
+                mat-mini-fab
+                class="action-button"
+                (click)="deleteComic(cmc)"
+              >
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -96,8 +106,14 @@
   </div>
 </div>
 
+<ng-template #noList>
+  <h2 style="text-align: center">Errore. Nessuna lista selezionata.</h2>
+</ng-template>
+
 <ng-template #noContent>
-  <h2 style="text-align: center">Qui non c'è nulla</h2>
+  <h2 style="text-align: center">
+    {{ currentPage == 1 ? "La lista è vuota!" : "Fine." }}
+  </h2>
 </ng-template>
 
 <ng-template #notLoggedIn>

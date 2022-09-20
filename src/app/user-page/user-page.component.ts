@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProblemCode } from '../common/ProblemCode';
 import { User } from '../model/User';
@@ -46,8 +46,7 @@ export class UserPageComponent implements OnInit {
 
   update() {
     if (this.newUser == undefined){
-      this.showMessage("Errore interno");
-      return;
+      throw new Error("Errore imprevisto");
     }
     this.userService.update(this.newUser).subscribe({
       next: (response: User) => {
@@ -57,8 +56,10 @@ export class UserPageComponent implements OnInit {
         this.sessionService.updateUser(this.user);
       },
       error: (problem: HttpErrorResponse) => {
-        if(problem.error[0].code == ProblemCode.USER_ALREADY_EXISTS) this.showMessage("Esiste già un utente resistrato con questa e-mail");
-        else console.error(problem.error[0]);
+        if(problem.error[0].code == ProblemCode.USER_ALREADY_EXISTS)
+          this.showMessage("Esiste già un utente resistrato con questa e-mail");
+        else
+          console.error(problem.error[0]);
       }
     });
   }

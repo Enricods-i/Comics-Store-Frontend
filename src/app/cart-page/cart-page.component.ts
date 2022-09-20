@@ -1,11 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartService } from '../cart.service';
 import { ProblemCode } from '../common/ProblemCode';
 import { Cart } from '../model/Cart';
 import { CartContent } from '../model/CartContent';
-import { Comic } from '../model/Comic';
 import { User } from '../model/User';
 import { SessionService } from '../session.service';
 
@@ -14,7 +13,7 @@ import { SessionService } from '../session.service';
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.css'],
 })
-export class CartPageComponent implements OnInit{
+export class CartPageComponent {
 
   user?: User;
   cart?: Cart;
@@ -24,9 +23,7 @@ export class CartPageComponent implements OnInit{
     private snackBar: MatSnackBar,
     private sessionService: SessionService
   )
-  {}
-
-  ngOnInit(): void {
+  {
     this.sessionService.currentUser.subscribe(user => this.user = user);
     this.sessionService.currentCart.subscribe(cart => this.cart = cart);
   }

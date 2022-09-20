@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
   logout(){
     this.sessionService.updateUser(undefined);
     this.sessionService.updateCart(undefined);
+    /* this.router.navigateByUrl(""); */
   }
 
   private getCart() {

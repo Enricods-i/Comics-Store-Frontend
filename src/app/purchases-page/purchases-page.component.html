@@ -1,25 +1,25 @@
 <div *ngIf="user!= undefined; else notLoggedIn">
-  <div *ngIf="purchases.length != 0; else noPurchases">
-    <div class="paginator">
-      <span>
-        <button
-          mat-icon-button
-          [disabled]="currentPage == 1"
-          (click)="previousPage()"
-        >
-          <mat-icon>chevron_left</mat-icon>
-        </button>
-        <span>{{ currentPage }}</span>
-        <button
-          mat-icon-button
-          [disabled]="purchases.length == 0"
-          (click)="nextPage()"
-        >
-          <mat-icon>chevron_right</mat-icon>
-        </button>
-      </span>
-    </div>
+  <div class="paginator">
+    <span>
+      <button
+        mat-icon-button
+        [disabled]="currentPage == 1"
+        (click)="previousPage()"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <span>{{ currentPage }}</span>
+      <button
+        mat-icon-button
+        [disabled]="purchases.length == 0"
+        (click)="nextPage()"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </span>
+  </div>
 
+  <div *ngIf="purchases.length != 0; else noPurchases">
     <mat-card *ngFor="let purchase of purchases">
       <mat-card-content>
         <table>
@@ -53,7 +53,9 @@
 </div>
 
 <ng-template #noPurchases>
-  <h2>Non hai effettuato nessun acquisto</h2>
+  <h2>
+    {{currentPage==1 ? 'Non hai ancora acquistato nulla!' : 'Fine'}}
+  </h2>
 </ng-template>
 
 <ng-template #notLoggedIn>

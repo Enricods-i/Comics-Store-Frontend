@@ -7,10 +7,9 @@ import { SessionService } from '../session.service';
 @Component({
   selector: 'app-purchases-page',
   templateUrl: './purchases-page.component.html',
-  styleUrls: ['./purchases-page.component.css']
+  styleUrls: ['./purchases-page.component.css'],
 })
 export class PurchasesPageComponent {
-
   user?: User;
 
   currentPage: number = 1;
@@ -19,13 +18,14 @@ export class PurchasesPageComponent {
   constructor(
     private purchaseService: PurchaseService,
     private sessionService: SessionService
-  )
-  {
-    this.sessionService.currentUser.subscribe(user => this.user = user);
-    this.getPurchases();
+  ) {
+    this.sessionService.currentUser.subscribe((user) => {
+      this.user = user;
+      this.getPurchases();
+    });
   }
 
-  previousPage(){
+  previousPage() {
     this.currentPage--;
     this.getPurchases();
   }
@@ -35,13 +35,17 @@ export class PurchasesPageComponent {
     this.getPurchases();
   }
 
-  getPurchases(){
-    if( this.user == undefined ) return;
-    this.purchaseService.getByUser(this.user.id, this.currentPage-1).subscribe({
-      next: (response: Purchase[]) => {
-        this.purchases = response;
-      }
-    });
+  getPurchases() {
+    if (this.user == undefined) {
+      this.purchases = [];
+      return;
+    }
+    this.purchaseService
+      .getByUser(this.user.id, this.currentPage - 1)
+      .subscribe({
+        next: (response: Purchase[]) => {
+          this.purchases = response;
+        },
+      });
   }
-
 }

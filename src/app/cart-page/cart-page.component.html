@@ -1,4 +1,4 @@
-<div *ngIf="cart != undefined" class="container">
+<div *ngIf="cart != undefined; else notLoggedIn" class="container">
   <div class="title">
     <h1>Carrello</h1>
     <button
@@ -57,7 +57,7 @@
   </div>
 
   <ng-template #cartEmpty>
-    <h2 class="empty-message">Qui non c'è nulla!</h2>
+    <h2 style="text-align: center;">Il tuo carrello è vuoto!</h2>
   </ng-template>
 
   <div class="footer">
@@ -72,3 +72,7 @@
     </button>
   </div>
 </div>
+
+<ng-template #notLoggedIn>
+  <h2 style="text-align: center;">Devi effettuare l'accesso prima.</h2>
+</ng-template>

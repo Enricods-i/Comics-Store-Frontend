@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartService } from '../cart.service';
 import { ProblemCode } from '../common/ProblemCode';
@@ -51,8 +51,9 @@ export class WishListContentComponent {
   }
 
   getComics() {
-    if (this.wishList == undefined || this.user == undefined)
-      throw new Error('Errore imprevisto');
+    if (this.wishList == undefined || this.user == undefined){
+      return;
+    }
     this.wishListService
       .getContent(this.wishList.id, this.user.id, this.currentPage - 1)
       .subscribe({

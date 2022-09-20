@@ -1,19 +1,19 @@
-<div class="title">
-  <h1>Liste desideri</h1>
-  <button
-    mat-mini-fab
-    [disabled]="user == undefined"
-    (click)="createList()"
-    class="action-button"
-  >
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
-
 <div *ngIf="user != undefined; else notLoggedIn">
+  <div class="title">
+    <h1>Liste desideri</h1>
+    <button
+      mat-mini-fab
+      [disabled]="user == undefined"
+      (click)="createList()"
+      class="action-button"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
   <div *ngIf="wishLists.length != 0; else noLists">
     <div *ngFor="let list of wishLists" class="container">
-      <a (click)="showListContent(list)" class="list-name">{{ list.name }}</a>
+      <span (click)="showListContent(list)" class="list-name">{{ list.name }}</span>
       <div>
         <button mat-icon-button color="warn" (click)="renameList(list)">
           <mat-icon>create</mat-icon>
@@ -27,9 +27,9 @@
 </div>
 
 <ng-template #noLists>
-  <h2 style="text-align: center">Fai click su + per creare una nuova lista</h2>
+  <h2 style="text-align: center">Fai click su + per creare una nuova lista!</h2>
 </ng-template>
 
 <ng-template #notLoggedIn>
-  <h2 style="text-align: center">Effettua l'accesso prima!</h2>
+  <h2 style="text-align: center">Devi effettuare l'aceesso prima.</h2>
 </ng-template>

@@ -6,7 +6,6 @@ import { User } from '../model/User';
 import { SessionService } from '../session.service';
 import { WishListService } from '../wish-list.service';
 import { Router } from '@angular/router';
-import { Comic } from '../model/Comic';
 
 @Component({
   selector: 'app-wish-lists-page',
@@ -25,8 +24,10 @@ export class WishListsPageComponent {
     private wishListService: WishListService,
     private router: Router
   ) {
-    this.sessionService.currentUser.subscribe((user) => (this.user = user));
-    this.getLists();
+    this.sessionService.currentUser.subscribe(user => {
+      this.user = user;
+      this.getLists();
+    });
   }
 
   showListContent(list: WishList) {
@@ -36,7 +37,10 @@ export class WishListsPageComponent {
   }
 
   getLists() {
-    if (this.user == undefined) throw new Error('Errore imprevisto');
+    if (this.user == undefined) {
+      this.wishLists = [];
+      return;
+    };
     this.wishListService.getByUser(this.user.id).subscribe({
       next: (response: WishList[]) => {
         this.wishLists = response;
