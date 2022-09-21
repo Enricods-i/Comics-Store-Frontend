@@ -22,58 +22,39 @@ export class CollectionService {
   getByName(name: string, pageNumber: number = 0): Observable<Collection[]> {
     return this.http.get<Collection[]>(
       this.BASE_URL + '/v/byName?name=' + name +
-      '&pageNumber=' + pageNumber
+      '&pageNumber=' + pageNumber +
+      '&pageSize=' + 9
     );
   }
 
   getByCategory(categoryId: number, pageNumber: number = 0): Observable<Collection[]> {
     return this.http.get<Collection[]>(
       this.BASE_URL + '/v/byCategory?ctgr=' + categoryId +
-      '&pageNumber=' +pageNumber
+      '&pageNumber=' + pageNumber +
+      '&pageSize=' + 9
     );
   }
 
   getByAuthor(authorId: number, pageNumber: number = 0): Observable<Collection[]> {
     return this.http.get<Collection[]>(
       this.BASE_URL + '/v/byAuthor?auth=' + authorId +
-      '&pageNumber=' +pageNumber
+      '&pageNumber=' + pageNumber +
+      '&pageSize=' + 9
     );
   }
 
   advancedSearch(name: string | null, categoryName: string | null, authorName: string | null, pageNumber: number = 0): Observable<Collection[]> {
-    let url: string = this.BASE_URL + '/v/search';
-    let first: boolean = true;
+    let url: string = this.BASE_URL + '/v/search?pageSize=9';
     if(name!=null){
-      if(first){
-        url = url.concat('?');
-        first = false;
-      }
-      else {
-        url = url.concat('&');
-      }
-      url = url.concat('name=', name);
+      url = url.concat('&name=', name);
     }
     if(categoryName!=null){
-      if(first){
-        url = url = url.concat('?');
-        first = false;
-      }
-      else {
-        url = url.concat('&');
-      }
-      url = url.concat('ctgr=',categoryName);
+      url = url.concat('&ctgr=',categoryName);
     }
     if(authorName!=null){
-      if(first){
-        url = url.concat('?');
-        first = false;
-      }
-      else {
-        url = url.concat('&');
-      }
-      url = url.concat('auth=',authorName);
+      url = url.concat('&auth=',authorName);
     }
-    return this.http.get<Collection[]>(url + '&pageNumber=' +pageNumber);
+    return this.http.get<Collection[]>(url + '&pageNumber=' + pageNumber);
   }
 
 }

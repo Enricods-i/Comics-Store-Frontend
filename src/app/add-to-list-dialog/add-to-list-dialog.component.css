@@ -1,8 +1,32 @@
-.list-name {
-  border-bottom: 1px solid rgb(255, 82, 82);
+.title {
+  display: flex;
+  justify-content: space-between;
 }
 
-input:focus {
+mat-dialog-content {
+  width: 500px;
+}
+
+.list-name {
+  text-align: center;
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.list-name:hover {
+  border-bottom: 1px solid rgb(255, 82, 82);
+  border-top: 1px solid rgb(255, 82, 82);
+}
+
+.new-list {
+  border-radius: 10px;
+  border: 1px solid gray;
+  outline: none;
+  width: 82%;
+  font-size: medium;
+}
+
+.new-list:focus {
   border: 1px solid rgb(255, 82, 82);
   outline: none;
 }

@@ -1,15 +1,34 @@
-<h2 mat-dialog-title>Aggiungi a</h2>
+<div class="title">
+  <h2 mat-dialog-title>Aggiungi a</h2>
+  <button mat-mini-fab style="color: white;" color="accent" (click)="newList = true">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
 <mat-dialog-content>
-  <mat-nav-list>
-    <a mat-list-item *ngFor="let list of wishLists" (click)="addComicToList(list)" class="list-name">
-      <span mat-line>{{list.name}}</span>
-    </a>
-    <a mat-list-item *ngIf="!newList" (click)="newList=true">
-      <span>Crea nuova lista</span>
+  <mat-nav-list *ngIf="wishLists.length!=0; else noList">
+    <a
+      mat-list-item
+      *ngFor="let list of wishLists"
+      (click)="addComicToList(list)"
+      class="list-name"
+    >
+      <span mat-line>{{ list.name }}</span>
     </a>
     <span mat-list-item *ngIf="newList">
-      <input mat-list-item minlength="3" required type="text" #name>
-      <button mat-button color="accent" [disabled]="!name.validity.valid" (click)="createList(name.value)">Crea</button>
+      <input mat-list-item minlength="3" required type="text" #name class="new-list"/>
+      <button
+        mat-icon-button
+        [disabled]="!name.validity.valid"
+        (click)="createList(name.value)"
+      >
+        <mat-icon>done</mat-icon>
+      </button>
+      <button mat-icon-button (click)="newList = false">
+        <mat-icon>close</mat-icon>
+      </button>
     </span>
   </mat-nav-list>
+  <ng-template #noList>
+    <span>Non hai creato nessuna lista desideri</span>
+  </ng-template>
 </mat-dialog-content>

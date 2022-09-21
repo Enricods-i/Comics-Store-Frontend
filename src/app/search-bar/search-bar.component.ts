@@ -71,24 +71,7 @@ export class SearchBarComponent {
       });
       return;
     }
-    console.log(this.query);
     this.router.navigateByUrl('catalog', { state: { query: this.query } });
   }
 
-  /* private advancedSearch(){
-    this.collectionService.advancedSearch(
-      this.query.collectionName ? this.query.collectionName : null,
-      this.query.categoryName ? this.query.categoryName : null,
-      this.query.authorName ? this.query.authorName : null
-      )
-  }
-
-  private simpleSearch() {
-    console.log(this.query.collectionName);
-    this.collectionService.getByName(this.query.collectionName).subscribe({
-      next: (response: Collection[]) => {
-        this.router.navigate(['/catalog'], { state: {collections: response} });
-      }
-    });
-  } */
 }

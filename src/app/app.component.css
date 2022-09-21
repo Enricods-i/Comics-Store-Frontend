@@ -8,15 +8,23 @@
 }
 
 .side-element {
-  width: 280px;;
+  width: 280px;
 }
 
 .logo {
+  width: min-content;
+  padding: 2px 3px;
   font-size: larger;
+  border-radius: 15px;
 }
 
 .logo:hover {
   cursor: pointer;
+  background-color: rgb(255, 225, 225);
+}
+
+.logo:active {
+  background-color: rgb(253, 200, 200);
 }
 
 .capital {

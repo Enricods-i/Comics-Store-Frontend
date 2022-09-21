@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { CollectionService } from '../collection.service';
 import { Category } from '../model/Category';
 import { Collection } from '../model/Collection';
@@ -8,7 +9,9 @@ import { Collection } from '../model/Collection';
   templateUrl: './category-page.component.html',
   styleUrls: ['./category-page.component.css']
 })
-export class CategoryPageComponent {
+export class CategoryPageComponent implements OnDestroy {
+
+  navigationSubscription;
 
   category?: Category;
 
@@ -16,9 +19,19 @@ export class CategoryPageComponent {
   collections: Collection[] = [];
 
   constructor(
-    private collectionService: CollectionService
+    private collectionService: CollectionService,
+    private router: Router
   )
   {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.reloadCollections();
+      }
+    });
+  }
+
+  reloadCollections(){
     this.category = history.state.category;
     this.currentPage = 1;
     this.getCollections();
@@ -41,6 +54,12 @@ export class CategoryPageComponent {
         this.collections = response;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 
 }

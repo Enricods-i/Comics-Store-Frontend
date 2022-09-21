@@ -69,11 +69,11 @@ td {
 
 .author-link {
   margin-right: 6px;
-  text-decoration: none;
   color: rgb(255, 82, 82);
 }
 
 .author-link:hover{
+  cursor: pointer;
   text-decoration: underline;
 }
 
