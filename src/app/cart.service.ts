@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { GlobalConstants } from './common/GlobalConstants';
 import { Cart } from './model/Cart';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CartService {
 
   private BASE_URL: string = GlobalConstants.API_BASE_URL + "/cart";

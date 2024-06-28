@@ -5,9 +5,7 @@ import { GlobalConstants } from './common/GlobalConstants';
 import { Comic } from './model/Comic';
 import { WishList } from './model/WishList';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class WishListService {
   private BASE_URL: string = GlobalConstants.API_BASE_URL + '/wishLists';
 

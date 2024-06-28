@@ -4,9 +4,7 @@ import { CartService } from './cart.service';
 import { Cart } from './model/Cart';
 import { User } from './model/User';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SessionService {
 
   private _cart = new BehaviorSubject<Cart | undefined>(undefined);

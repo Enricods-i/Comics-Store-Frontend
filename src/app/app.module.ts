@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -48,58 +48,56 @@ import { WishListService } from './wish-list.service';
 import { AddToListDialogComponent } from './add-to-list-dialog/add-to-list-dialog.component';
 import { HomeComponent } from './home/home.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SearchBarComponent,
-    CollectionsRenderedComponent,
-    ComicRenderedComponent,
-    CatalogPageComponent,
-    CartPageComponent,
-    AuthorPageComponent,
-    CategoryPageComponent,
-    WishListContentComponent,
-    WishListsPageComponent,
-    InputDialogComponent,
-    UserPageComponent,
-    PurchasesPageComponent,
-    SearchPageComponent,
-    AddToListDialogComponent,
-    HomeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDividerModule,
-    MatBadgeModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatGridListModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatRippleModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatListModule,
-  ],
-  providers: [
-    UserService,
-    CartService,
-    CollectionService,
-    ComicService,
-    SessionService,
-    PurchaseService,
-    WishListService,
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        LoginComponent,
+        SearchBarComponent,
+        CollectionsRenderedComponent,
+        ComicRenderedComponent,
+        CatalogPageComponent,
+        CartPageComponent,
+        AuthorPageComponent,
+        CategoryPageComponent,
+        WishListContentComponent,
+        WishListsPageComponent,
+        InputDialogComponent,
+        UserPageComponent,
+        PurchasesPageComponent,
+        SearchPageComponent,
+        AddToListDialogComponent,
+        HomeComponent,
+    ],
+    bootstrap: [AppComponent], 
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatDividerModule,
+        MatBadgeModule,
+        MatMenuModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatGridListModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRippleModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatListModule
+    ], 
+    providers: [
+        UserService,
+        CartService,
+        CollectionService,
+        ComicService,
+        SessionService,
+        PurchaseService,
+        WishListService,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}

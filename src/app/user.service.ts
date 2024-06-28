@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { GlobalConstants } from './common/GlobalConstants';
 import { User } from './model/User';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserService {
 
   private BASE_URL: string = GlobalConstants.API_BASE_URL + "/users";
