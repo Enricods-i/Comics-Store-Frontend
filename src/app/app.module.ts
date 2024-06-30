@@ -23,6 +23,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { LoginComponent } from './login/login.component';
 import { CollectionsRenderedComponent } from './collections-rendered/collections-rendered.component';
@@ -47,6 +48,7 @@ import { PurchaseService } from './purchase.service';
 import { WishListService } from './wish-list.service';
 import { AddToListDialogComponent } from './add-to-list-dialog/add-to-list-dialog.component';
 import { HomeComponent } from './home/home.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -88,7 +90,8 @@ import { HomeComponent } from './home/home.component';
         MatRippleModule,
         MatSnackBarModule,
         MatDialogModule,
-        MatListModule
+        MatListModule,
+        MatChipsModule
     ], 
     providers: [
         UserService,
@@ -99,5 +102,6 @@ import { HomeComponent } from './home/home.component';
         PurchaseService,
         WishListService,
         provideHttpClient(withInterceptorsFromDi()),
+        provideAnimationsAsync('noop'),
     ] })
 export class AppModule {}

@@ -1,56 +1,20 @@
-.container {
-  width: 800px;
-  margin: 20px auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
+.collection-container {
+  min-width: 1150px;
+  max-width: 1150px;
+  margin: 0 auto;
 }
 
-.card {
-  background-color: white;
-  width: 256px;
-  height: 404px;
-  margin: 10px auto;
+.collection-card {
+  max-width: 300px;
 }
 
-.card:hover {
-  cursor: pointer;
+.collection-card-footer {
+  padding: 8px;
 }
 
-.card img {
-  width: auto;
-  height: 400px;
-}
-
-.title {
-  font-size: large;
-  text-align: center;
-}
-
-button {
-  margin: 5px;
-
-  height: 30px;
-
-  background-color: white;
-
-  border: 2px solid rgb(255, 82, 82);
-  border-radius: 15px;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: rgb(252, 162, 162);
-}
-
-button:active {
-  background-color: rgb(245, 120, 120);
-}
-
-button span {
-  margin: 0px 3px;
-}
-
-.no-result {
-  text-align: center;
+::ng-deep .mat-mdc-chip-set .mdc-evolution-chip-set__chips {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  flex-wrap: unset;
 }
