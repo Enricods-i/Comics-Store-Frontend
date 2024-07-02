@@ -1,0 +1,11 @@
+@if (collections.length != 0) {
+  @if (mobile_view) {
+    <mobile-view [collectionList]="collections"></mobile-view>
+  }
+  @else {
+    <desktop-view [collectionList]="collections" [layoutConfig]="desktopViewLayoutConfig"></desktop-view>
+  }
+}
+@else {
+  <h2>Nessun risultato!</h2>
+}

@@ -1,0 +1,22 @@
+.container {
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.card {
+    margin: 20px auto;
+}
+
+.card-content {
+    display: flex;
+    padding: 8px;
+}
+
+.collection-informations {
+    width: 85%;
+}
+
+.collection-cover {
+    width: 150px;
+    border-radius: 10px;
+}

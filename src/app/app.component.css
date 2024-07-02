@@ -61,10 +61,9 @@
 .content {
   width: 100%;
   margin: 10px auto;
-  overflow: scroll;
 }
 
-.bottom-bar {
+/* .bottom-bar {
   position: absolute;
   bottom: 0;
 
@@ -80,5 +79,5 @@
 
 .bottom-bar span {
   margin: 0px 5px;
-}
+} */
 

@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -26,7 +27,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 
 import { LoginComponent } from './login/login.component';
-import { CollectionsRenderedComponent } from './collections-rendered/collections-rendered.component';
+import { CollectionListComponent } from './collection-list/collection-list.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ComicRenderedComponent } from './comic-rendered/comic-rendered.component';
 import { CatalogPageComponent } from './catalog-page/catalog-page.component';
@@ -49,12 +50,16 @@ import { WishListService } from './wish-list.service';
 import { AddToListDialogComponent } from './add-to-list-dialog/add-to-list-dialog.component';
 import { HomeComponent } from './home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { DesktopViewComponent } from './collection-list/desktop-view/desktop-view.component';
+import { MobileViewComponent } from './collection-list/mobile-view/mobile-view.component';
 
 @NgModule({ declarations: [
         AppComponent,
         LoginComponent,
         SearchBarComponent,
-        CollectionsRenderedComponent,
+        CollectionListComponent,
+        DesktopViewComponent,
+        MobileViewComponent,
         ComicRenderedComponent,
         CatalogPageComponent,
         CartPageComponent,
@@ -91,7 +96,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
         MatSnackBarModule,
         MatDialogModule,
         MatListModule,
-        MatChipsModule
+        MatChipsModule,
+        LayoutModule
     ], 
     providers: [
         UserService,

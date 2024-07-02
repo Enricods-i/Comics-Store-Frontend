@@ -1,0 +1,19 @@
+.container {
+    margin: 0 auto;
+}
+
+.card {
+    max-width: 250px;
+}
+
+.card-footer {
+    padding: 8px;
+}
+
+/*list of mat-chip scrollable horizontally*/
+::ng-deep .mat-mdc-chip-set .mdc-evolution-chip-set__chips {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    flex-wrap: unset;
+}
