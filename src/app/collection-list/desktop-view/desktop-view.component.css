@@ -2,12 +2,14 @@
     margin: 0 auto;
 }
 
-.card {
-    max-width: 250px;
-}
-
 .card-footer {
     padding: 8px;
+}
+
+.title {
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
 }
 
 /*list of mat-chip scrollable horizontally*/

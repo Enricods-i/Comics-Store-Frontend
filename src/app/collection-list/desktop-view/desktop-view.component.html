@@ -1,12 +1,12 @@
-<div class="container" [ngStyle]="{'max-width.px' : layoutConfig.gridMaxWidthPx}">
-    <mat-grid-list [cols]="layoutConfig.gridCols" gutterSize="10px" [rowHeight]="layoutConfig.gridRowHeightPx">
+<div class="container" [ngStyle]="{'max-width.px' : layoutConfig?.gridMaxWidthPx}">
+    <mat-grid-list [cols]="layoutConfig?.gridCols" gutterSize="10px" [rowHeight]="layoutConfig == undefined ? '500' : layoutConfig.gridRowHeightPx">
         @for (collection of collectionList; track $index) {
         <mat-grid-tile>
-            <mat-card [ngStyle]="{'max-width.px': layoutConfig.cardMaxWidthPx}">
+            <mat-card [ngStyle]="{'max-width.px': layoutConfig?.cardMaxWidthPx}">
                 <img mat-card-image [src]="'http://localhost:8080/collections/cover/' + collection.id"
                     (click)="showComics(collection)" />
                 <mat-card-footer class="card-footer">
-                    <mat-card-title> {{collection.name}} </mat-card-title>
+                    <p class="title" [ngStyle]="{'font-size.px': layoutConfig?.titleFontSizePx}"> {{collection.name}} </p>
                     <mat-chip-set>
                         @for (category of collection.categories; track $index) {
                         <mat-chip highlighted (click)="showCategory(category)"> {{category.name}} </mat-chip>

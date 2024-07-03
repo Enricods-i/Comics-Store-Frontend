@@ -15,14 +15,7 @@ export class DesktopViewComponent {
 
   @Input() collectionList: Collection[] = []
 
-  @Input() layoutConfig: DesktopViewLayoutConfig = {
-    // meaningless initialization
-    // there has to be a better solution!
-    'gridCols': 0,
-    'gridMaxWidthPx': 0,
-    'gridRowHeightPx': 0,
-    'cardMaxWidthPx': 0
-  }
+  @Input() layoutConfig: DesktopViewLayoutConfig | undefined
 
   constructor(private router: Router) {}
 
