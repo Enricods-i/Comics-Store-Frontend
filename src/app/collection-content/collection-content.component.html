@@ -1,0 +1,7 @@
+<div class="container">
+  @for (comic of comics; track $index) {
+    <div class="item">
+      <comic-card [comic]="comic"></comic-card>
+    </div>
+  }
+</div>

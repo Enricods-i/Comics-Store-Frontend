@@ -1,0 +1,26 @@
+@if (comic) {
+    <mat-card appearance="outlined">
+        <img class="cover" mat-card-image [src]="'http://localhost:8080/comics/cover/' + comic.id" alt="Cover" />
+        @if (comic.quantity == 0) {
+            <img class="cover sold-out" mat-card-image [style.position]="'absolute'" src="../../../assets/sold_out.png"
+                alt="SOLD OUT" />
+        }
+        <mat-card-footer>
+            <mat-expansion-panel (opened)="expansionPanelOpened = true" (closed)="expansionPanelOpened = false" [style.z-index]="expansionPanelOpened ? 1 : 0">
+                <mat-expansion-panel-header>
+                    Volume {{comic.number}}
+                </mat-expansion-panel-header>
+                {{comic.authors[0].name}}
+                <mat-action-row>
+                    <button mat-icon-button>
+                        <mat-icon>favorite_border</mat-icon>
+                    </button>
+                    <button mat-flat-button [disabled]="comic.quantity == 0">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                        €{{comic.collection.price}}
+                    </button>
+                </mat-action-row>
+            </mat-expansion-panel>
+        </mat-card-footer>
+    </mat-card>
+}

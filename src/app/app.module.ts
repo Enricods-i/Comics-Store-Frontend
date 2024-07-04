@@ -25,12 +25,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { LoginComponent } from './login/login.component';
 import { CollectionListComponent } from './collection-list/collection-list.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { ComicRenderedComponent } from './comic-rendered/comic-rendered.component';
-import { CatalogPageComponent } from './catalog-page/catalog-page.component';
+import { CollectionContentComponent } from './collection-content/collection-content.component';
+import { ComicCardComponent } from './collection-content/comic-card/comic-card.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { AuthorPageComponent } from './author-page/author-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
@@ -60,8 +62,8 @@ import { MobileViewComponent } from './collection-list/mobile-view/mobile-view.c
         CollectionListComponent,
         DesktopViewComponent,
         MobileViewComponent,
-        ComicRenderedComponent,
-        CatalogPageComponent,
+        CollectionContentComponent,
+        ComicCardComponent,
         CartPageComponent,
         AuthorPageComponent,
         CategoryPageComponent,
@@ -97,7 +99,9 @@ import { MobileViewComponent } from './collection-list/mobile-view/mobile-view.c
         MatDialogModule,
         MatListModule,
         MatChipsModule,
-        LayoutModule
+        LayoutModule,
+        MatPaginatorModule,
+        MatExpansionModule
     ], 
     providers: [
         UserService,
@@ -108,6 +112,6 @@ import { MobileViewComponent } from './collection-list/mobile-view/mobile-view.c
         PurchaseService,
         WishListService,
         provideHttpClient(withInterceptorsFromDi()),
-        provideAnimationsAsync('noop'),
+        provideAnimationsAsync(),
     ] })
 export class AppModule {}

@@ -11,61 +11,81 @@ import { Collection } from '../model/Collection';
 import { Comic } from '../model/Comic';
 import { User } from '../model/User';
 import { SessionService } from '../session.service';
+import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { Author } from '../model/Author';
 
 @Component({
-  selector: 'app-catalog-page',
-  templateUrl: './catalog-page.component.html',
-  styleUrls: ['./catalog-page.component.css']
+  selector: 'collection-content',
+  templateUrl: './collection-content.component.html',
+  styleUrls: ['./collection-content.component.css']
 })
-export class CatalogPageComponent {
+export class CollectionContentComponent {
 
   user?: User;
   cart?: Cart;
 
   collection?: Collection;
 
-  currentPage: number = 1;
+  numberOfComics: number = 0;
+
+  pageIndex: number = 0;
+  pageSize: number = 10;
+
   comics: Comic[] = [];
 
   constructor(
-    private comicService: ComicService,
-    private sessionService: SessionService,
-    private cartService: CartService,
-    private snackBar: MatSnackBar,
-    private addToListDialog: MatDialog
-  )
+              private comicService: ComicService,
+              private sessionService: SessionService,
+              private cartService: CartService,
+              private snackBar: MatSnackBar,
+              private addToListDialog: MatDialog,
+              private router: Router
+            )
   {
     this.sessionService.currentUser.subscribe(user => this.user = user);
     this.sessionService.currentCart.subscribe(cart => this.cart = cart);
     this.collection = history.state.collection;
-    this.getComics();
+
+    if (this.collection != undefined) {
+
+      this.comicService.getSizeOfCollection(this.collection.id).subscribe({
+        next: (response: number) => this.numberOfComics = response
+      });
+
+      this.comicService.getByCollection(this.collection.id).subscribe({
+        next: (response: Comic[]) => {
+          this.comics = response;
+        }
+      });
+
+    }
+  }// constructor
+
+
+  handlePageEvent(pageEvent: PageEvent){
+
+    if(this.collection != undefined &&
+      (this.pageIndex != pageEvent.pageIndex ||
+      this.pageSize != pageEvent.pageSize)
+    )
+    {
+      this.pageIndex = pageEvent.pageIndex;
+      this.pageSize = pageEvent.pageSize;
+      this.comicService.getByCollection(this.collection.id, pageEvent.pageIndex, pageEvent.pageSize).subscribe({
+        next: (response: Comic[]) => {
+          this.comics = response;
+        }
+      });
+    }
+    
   }
+
 
   showMessage(msg: string){
     this.snackBar.open(msg, undefined, {duration: 5000});
   }
 
-  getComics(){
-    if (this.collection == undefined){
-      this.showMessage("Errore interno");
-      return;
-    }
-    this.comicService.getByCollection(this.collection.id, this.currentPage-1).subscribe({
-      next: (response: Comic[]) => {
-        this.comics = response;
-      }
-    });
-  }
-
-  previousPage(){
-    this.currentPage--;
-    this.getComics();
-  }
-
-  nextPage() {
-    this.currentPage++;
-    this.getComics();
-  }
 
   addToCart(c: Comic, q: number){
     if (this.user == undefined){
@@ -91,10 +111,16 @@ export class CatalogPageComponent {
     });
   }
 
+
   addToList(c: Comic){
     this.addToListDialog.open(AddToListDialogComponent, {
       data: { comic: c }
     });
+  }
+
+
+  showAuthor(a: Author) {
+    this.router.navigateByUrl('catalog/author', { state: { author: a } });
   }
 
 }

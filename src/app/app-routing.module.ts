@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorPageComponent } from './author-page/author-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
-import { CatalogPageComponent } from './catalog-page/catalog-page.component';
+import { CollectionContentComponent } from './collection-content/collection-content.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { HomeComponent } from './home/home.component';
 import { PurchasesPageComponent } from './purchases-page/purchases-page.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
     component: SearchPageComponent,
     runGuardsAndResolvers: 'always',
   },
-  { path: 'catalog/collection', component: CatalogPageComponent },
+  { path: 'catalog/collection', component: CollectionContentComponent },
   { path: 'catalog/author', component: AuthorPageComponent },
   { path: 'catalog/category', component: CategoryPageComponent },
   { path: 'wish-list', component: WishListsPageComponent },

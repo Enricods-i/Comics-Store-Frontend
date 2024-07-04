@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CatalogPageComponent } from './catalog-page.component';
+import { ComicCardComponent } from './comic-card.component';
 
-describe('CatalogPageComponent', () => {
-  let component: CatalogPageComponent;
-  let fixture: ComponentFixture<CatalogPageComponent>;
+describe('ComicCardComponent', () => {
+  let component: ComicCardComponent;
+  let fixture: ComponentFixture<ComicCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CatalogPageComponent ]
+      imports: [ComicCardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CatalogPageComponent);
+    fixture = TestBed.createComponent(ComicCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

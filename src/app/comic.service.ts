@@ -11,10 +11,17 @@ export class ComicService {
 
   constructor(private http: HttpClient) { }
 
-  getByCollection(collectionId: number, pageNumber: number = 0): Observable<Comic[]> {
+  getSizeOfCollection(collectionId: number): Observable<number> {
+    return this.http.get<number>(
+      this.BASE_URL + '/size/byCollection?cllctn=' +collectionId
+    );
+  }
+
+  getByCollection(collectionId: number, pageNumber: number = 0, pageSize: number = 20): Observable<Comic[]> {
     return this.http.get<Comic[]>(
       this.BASE_URL + '/v/byCollection?cllctn=' + collectionId +
-      '&pageNumber=' + pageNumber
+      '&pageNumber=' + pageNumber + 
+      '&pageSize=' + pageSize
     );
   }
 
