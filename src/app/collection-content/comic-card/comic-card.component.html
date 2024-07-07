@@ -1,8 +1,10 @@
 @if (comic) {
     <mat-card appearance="outlined">
-        <img class="cover" mat-card-image [src]="'http://localhost:8080/comics/cover/' + comic.id" alt="Cover" />
+        <div matRipple id="cover-ripple">
+            <img class="cover" mat-card-image [src]="'http://localhost:8080/comics/cover/' + comic.id" alt="Cover" />
+        </div>
         @if (comic.quantity == 0) {
-            <img class="cover sold-out" mat-card-image [style.position]="'absolute'" src="../../../assets/sold_out.png"
+            <img class="cover sold-out" mat-card-image  [style.position]="'absolute'" src="../../../assets/sold_out.png"
                 alt="SOLD OUT" />
         }
         <mat-card-footer>
@@ -10,7 +12,23 @@
                 <mat-expansion-panel-header>
                     Volume {{comic.number}}
                 </mat-expansion-panel-header>
-                {{comic.authors[0].name}}
+                <!-- Content -->
+                 <ng-template matExpansionPanelContent>
+                    <div class="expansion-panel-content">
+                        <div>di:</div>
+                        @for (auth of comic.authors; track $index) {
+                            <button mat-button>
+                                {{auth.name}}
+                            </button>
+                            @if ($index != comic.authors.length - 1) {
+                                <div>e</div>
+                            }
+                        } @empty {
+                        <div>Autore non disponibile</div>
+                        }
+                    </div>
+                 </ng-template>
+                <!-- End Content -->
                 <mat-action-row>
                     <button mat-icon-button>
                         <mat-icon>favorite_border</mat-icon>

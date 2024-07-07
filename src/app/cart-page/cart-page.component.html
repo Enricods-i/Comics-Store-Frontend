@@ -14,7 +14,7 @@
 
   <div *ngIf="cart.content.length != 0; else cartEmpty">
     <div class="comic-frame" *ngFor="let item of cart.content">
-      <app-comic-rendered [comic]="item.comic"></app-comic-rendered>
+      <comic-card [comic]="item.comic"></comic-card>
 
       <div class="button-space">
         <div class="button-container">

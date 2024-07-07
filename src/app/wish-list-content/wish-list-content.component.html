@@ -29,7 +29,7 @@
 
     <div *ngIf="comics.length != 0; else noContent">
       <div class="comic-frame" *ngFor="let cmc of comics">
-        <app-comic-rendered [comic]="cmc"></app-comic-rendered>
+        <comic-card [comic]="cmc"></comic-card>
 
         <div class="button-space">
           <div class="button-container">

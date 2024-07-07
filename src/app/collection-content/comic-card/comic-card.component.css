@@ -1,7 +1,29 @@
+:host {
+    --cover-height: 350px;
+}
+
+#cover-ripple {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    cursor: pointer;
+    height: var(--cover-height);
+}
+
 .cover {
-    height: 350px;
+    height: var(--cover-height);
 }
 
 .sold-out {
     background-color: rgba(128, 128, 128, 0.3);
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled="true"]):hover {
+    background: rgba(231, 52, 81, 0.08);
+}
+
+.expansion-panel-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: start;
+    align-items: center;
 }
