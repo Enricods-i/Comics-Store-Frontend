@@ -10,17 +10,13 @@ import { Comic } from '../model/Comic';
 })
 export class ComicRenderedComponent {
 
-  @Input()
-  comic!: Comic;
+  @Input() comic!: Comic;
 
   showDescription: boolean = false;
 
-  constructor(
-    private router: Router
-  )
-  {}
+  constructor(private router: Router) {}
 
-  showAuthor(a: Author){
+  showAuthor(a: Author) {
     this.router.navigateByUrl('catalog/author', { state: {author: a}});
   }
 
